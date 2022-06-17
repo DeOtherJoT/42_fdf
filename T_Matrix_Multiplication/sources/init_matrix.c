@@ -11,7 +11,7 @@ t_matrix    *ft_matrix_new(size_t rows, size_t col)
         return (NULL);
     ret->row = rows;
     ret->col = col;
-    ret->matrix = ft_calloc(rows * col, sizeof(double *));
+    ret->matrix = ft_calloc(rows * col, sizeof(double));
     if (ret->matrix == NULL)
         return (NULL);
     return (ret);
@@ -25,18 +25,18 @@ void    ft_matrix_del(t_matrix *mat)
     free(mat);
 }
 
-double  ft_matrix_get(size_t row, size_t col, t_matrix *matrix)
+double  ft_matrix_get(t_matrix *matrix, size_t row, size_t col)
 {
     if (row >= matrix->row || col >= matrix->col)
-        return (0);
+        err_msg("Error at ft_matrix_get()");
     return ((matrix->matrix[col + (row * matrix->col)]));
 }
 
-void    ft_matrix_set(size_t row, size_t col, double val, t_matrix *matrix)
+void    ft_matrix_set(t_matrix *matrix, size_t row, size_t col, double val)
 {
     if (!matrix)
         return ;
     if (row >= matrix->row || col >= matrix->col)
-        return ;
+        err_msg("Error at ft_matrix_set()");
     matrix->matrix[col + (row * matrix->col)] = val;
 }
