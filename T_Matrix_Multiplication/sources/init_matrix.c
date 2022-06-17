@@ -4,8 +4,8 @@ t_matrix    *ft_matrix_new(size_t rows, size_t col)
 {
     t_matrix    *ret;
 
-    if (rows <= 0 || col <= 0)
-        return (0);
+    if (rows == 0 || col == 0)
+        return (NULL);
     ret = malloc(sizeof(t_matrix));
     if (ret == NULL)
         return (NULL);
