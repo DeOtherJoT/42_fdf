@@ -17,7 +17,7 @@ t_matrix    *ft_matrix_new(size_t rows, size_t col)
     return (ret);
 }
 
-void    ft_del_matrix(t_matrix *mat)
+void    ft_matrix_del(t_matrix *mat)
 {
     if (mat == NULL)
         return ;
@@ -26,14 +26,14 @@ void    ft_del_matrix(t_matrix *mat)
     mat = NULL;
 }
 
-int ft_get_elem(size_t row, size_t col, t_matrix *matrix)
+int ft_matrix_get(size_t row, size_t col, t_matrix *matrix)
 {
     if (row >= matrix->row || col >= matrix->col)
         return (0);
     return ((int)(matrix->matrix[col + (row * matrix->col)]));
 }
 
-void    ft_place_val(size_t row, size_t col, double val, t_matrix *matrix)
+void    ft_matrix_set(size_t row, size_t col, double val, t_matrix *matrix)
 {
     if (!matrix)
         return ;
