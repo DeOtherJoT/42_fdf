@@ -28,7 +28,7 @@ void    ft_del_matrix(t_matrix *mat)
 
 int ft_get_elem(size_t row, size_t col, t_matrix *matrix)
 {
-    if ((row + 1) > matrix->row || (col + 1) > matrix->col)
+    if (row >= matrix->row || col >= matrix->col)
         return (0);
     return ((int)(matrix->matrix[col + (row * matrix->col)]));
 }
@@ -37,7 +37,7 @@ void    ft_place_val(size_t row, size_t col, double val, t_matrix *matrix)
 {
     if (!matrix)
         return ;
-    if ((row + 1) > matrix->row || (col + 1) > matrix->col)
+    if (row >= matrix->row || col >= matrix->col)
         return ;
     matrix->matrix[col + (row * matrix->col)] = val;
 }
