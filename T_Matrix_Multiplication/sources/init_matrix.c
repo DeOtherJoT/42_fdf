@@ -11,7 +11,7 @@ t_matrix    *ft_matrix_new(size_t rows, size_t col)
         return (NULL);
     ret->row = rows;
     ret->col = col;
-    ret->matrix = ft_calloc(rows * col, sizeof(double));
+    ret->matrix = ft_calloc(rows * col, sizeof(double *));
     if (ret->matrix == NULL)
         return (NULL);
     return (ret);
@@ -23,7 +23,6 @@ void    ft_matrix_del(t_matrix *mat)
         return ;
     free(mat->matrix);
     free(mat);
-    mat = NULL;
 }
 
 double  ft_matrix_get(size_t row, size_t col, t_matrix *matrix)
