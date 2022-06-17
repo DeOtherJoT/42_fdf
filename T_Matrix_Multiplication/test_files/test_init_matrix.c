@@ -1,6 +1,23 @@
 #include "../includes/my_matrix.h"
 
 #include <stdio.h>
+#include <time.h>
+
+void    print_matrix(t_matrix *matrix)
+{
+    size_t  i;
+
+    i = 0;
+    while (i < (matrix->row * matrix->col))
+    {
+        printf("%d", matrix->matrix[i]);
+        if ((i + 1)%(matrix->col) == 0)
+            write(1, "\n", 1);
+        else
+            write(1, "\t", 1);
+        i++;
+    }
+}
 
 int get_random_num(int lower_lim, int upper_lim)
 {
@@ -13,7 +30,7 @@ void    populate_matrix(t_matrix *matrix)
 
     while (i < (matrix->row * matrix->col))
     {
-        matrix->matrix[i] = get_random_num(2, 10);
+        matrix->matrix[i] = get_random_num(0, 10);
         i++;
     }
 }
@@ -21,27 +38,27 @@ void    populate_matrix(t_matrix *matrix)
 int main(void)
 {
     t_matrix    *matrix;
-
-    matrix = (t_matrix *)malloc(sizeof(t_matrix));
     
-    ft_init_matrix(4, 4, matrix);
+    matrix = ft_matrix_new(4, 4);
 
     printf("Matrix initialized!\nPrinting a blank 4x4 matrix\n");
 
-    ft_print_matrix(matrix);
+    print_matrix(matrix);
 
     printf("\nDone\nPopulating matrix randomly\n");
+
+    srand(time(0));
 
     populate_matrix(matrix);
 
     printf("\nDone\nPrinting populated matrix\n");
 
-    ft_print_matrix(matrix);
+    print_matrix(matrix);
 
     printf("\nDone\nExtracting random index\n");
 
-    int row = get_random_num(1, 3);
-    int col = get_random_num(1, 3);
+    int row = get_random_num(0, 3);
+    int col = get_random_num(0, 3);
 
     printf("\nmatrix[%d][%d] = %d\n", col, row, ft_get_elem(row, col, matrix));
 
@@ -51,7 +68,7 @@ int main(void)
 
     printf("\nDone\nPrinting matrix one last time\n");
 
-    ft_print_matrix(matrix);
+    print_matrix(matrix);
 
     printf("\nDone\nDeleting matrix\n");
 
