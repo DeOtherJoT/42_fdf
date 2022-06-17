@@ -26,11 +26,11 @@ void    ft_matrix_del(t_matrix *mat)
     mat = NULL;
 }
 
-int ft_matrix_get(size_t row, size_t col, t_matrix *matrix)
+double  ft_matrix_get(size_t row, size_t col, t_matrix *matrix)
 {
     if (row >= matrix->row || col >= matrix->col)
         return (0);
-    return ((int)(matrix->matrix[col + (row * matrix->col)]));
+    return ((matrix->matrix[col + (row * matrix->col)]));
 }
 
 void    ft_matrix_set(size_t row, size_t col, double val, t_matrix *matrix)
