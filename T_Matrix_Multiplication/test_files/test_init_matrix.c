@@ -3,14 +3,35 @@
 #include <stdio.h>
 #include <time.h>
 
+/* ------- Tester utils ------- */
+
+int cmp_matrix(t_matrix *matA, t_matrix *matB)
+{
+    size_t  i;
+
+    if (matA->row != matB->row || matA->col != matB->col)
+        return (1);
+    i = 0;
+    while (i < (matA->row * matA->col))
+    {
+        if (matA->matrix[i] != matB->matrix[i])
+            return (1);
+        i++;
+    }
+    return (0);
+}
+
 void    print_matrix(t_matrix *matrix)
 {
     size_t  i;
 
     i = 0;
+
+    printf("Row = %lld\n", matrix->row);
+    printf("Col = %lld\n", matrix->col);
     while (i < (matrix->row * matrix->col))
     {
-        printf("%d", matrix->matrix[i]);
+        printf("%f", matrix->matrix[i]);
         if ((i + 1)%(matrix->col) == 0)
             write(1, "\n", 1);
         else
@@ -19,14 +40,14 @@ void    print_matrix(t_matrix *matrix)
     }
 }
 
-int get_random_num(int lower_lim, int upper_lim)
+float   get_random_num(int lower_lim, int upper_lim)
 {
     return ((rand() % (upper_lim - lower_lim + 1)) + lower_lim);
 }
 
 void    populate_matrix(t_matrix *matrix)
 {
-    int i = 0;
+    size_t i = 0;
 
     while (i < (matrix->row * matrix->col))
     {
@@ -35,49 +56,79 @@ void    populate_matrix(t_matrix *matrix)
     }
 }
 
-int main(void)
+/* ------- Actual test functions ------- */
+
+void    test_matrix_new(void)
 {
     t_matrix    *matrix;
-    
-    matrix = ft_matrix_new(4, 4);
+    size_t      test_row = 4;
+    size_t      test_col = 4;
+    size_t      i = 0;
 
-    printf("Matrix initialized!\nPrinting a blank 4x4 matrix\n");
+    matrix = ft_matrix_new(test_row, test_col);
 
-    print_matrix(matrix);
+    if (matrix->row != test_row || matrix->col != test_col)
+    {
+        printf("ft_matrix_new : KO!\n");
+        return ;
+    }
+    while (i < (test_row * test_col))
+    {
+        if (matrix->matrix[i] != 0)
+        {
+            printf("ft_matrix_new : KO!\n");
+            return ;
+        }
+        i++;
+    }
+    printf("ft_matrix_new : Success!\n");
+    ft_matrix_del(matrix);
+}
 
-    printf("\nDone\nPopulating matrix randomly\n");
+void    test_matrix_get(void)
+{
+    t_matrix    *matrix;
+    size_t      i = 0;
+    size_t      j;
 
-    srand(time(0));
+    matrix = ft_matrix_new(3, 3);
+    while (i < matrix->row)
+    {
+        j = 0;
+        while (j < matrix->col)
+        {
+            if (ft_matrix_get(matrix, i, j) != 0)
+            {
+                printf("ft_matrix_get : KO!\n");
+                return ;
+            }
+            j++;
+        }
+        i++;
+    }
+    printf("ft_matrix_get : Success!\n");
+    ft_matrix_del(matrix);
+}
 
-    populate_matrix(matrix);
+void    test_matrix_set(void)
+{
+    t_matrix    *matrix;
+    float       val = 100;
 
-    printf("\nDone\nPrinting populated matrix\n");
+    matrix = ft_matrix_new(5, 5);
+    ft_matrix_set(matrix, 2, 2, val);
+    if (ft_matrix_get(matrix, 2, 2) != val)
+    {
+        printf("ft_matrix_set : KO!\n");
+        return ;
+    }
+    printf("ft_matrix_set : Success!\n");
+    ft_matrix_del(matrix);
+}
 
-    print_matrix(matrix);
-
-    printf("\nDone\nExtracting random index\n");
-
-    int row = get_random_num(0, 3);
-    int col = get_random_num(0, 3);
-
-    printf("\nmatrix[%d][%d] = %d\n", col, row, ft_get_elem(row, col, matrix));
-
-    printf("\nNow, altering the value of above to 100\n");
-
-    ft_place_val(row, col, 100, matrix);
-
-    printf("\nDone\nPrinting matrix one last time\n");
-
-    print_matrix(matrix);
-
-    printf("\nDone\nDeleting matrix\n");
-
-    ft_del_matrix(matrix);
-
-    if (matrix != NULL)
-        printf("Failed to delete\n");
-    else
-        printf("Success\n");
-
-    return (1);
+int main(void)
+{
+    test_matrix_new();
+    test_matrix_get();
+    test_matrix_set();
 }
