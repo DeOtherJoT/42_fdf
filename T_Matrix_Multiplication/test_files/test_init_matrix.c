@@ -136,10 +136,37 @@ void    test_matrix_create(void)
     printf("ft_matrix_create :\tSuccess!\n");
 }
 
+void    test_matrix_mult(void)
+{
+    t_matrix    *matA;
+    t_matrix    *matB;
+    t_matrix    *result;
+    double      data_A[] = {1.0, 2.0, 3.0, 4.0, 5.0, 6.0};
+    double      data_B[] = {1.0, 2.0, 3.0, 4.0, 5.0, 6.0};
+    double      data_ans[] = {22.0, 28.0, 49.0, 64.0};
+
+    matA = ft_matrix_create(2, 3, data_A);
+    matB = ft_matrix_create(3, 2, data_B);
+
+    result = ft_matrix_mult(matA, matB);
+
+    t_matrix    *ans = ft_matrix_create(2, 2, data_ans);
+
+    int j = cmp_matrix(ans, result);
+
+    if (j == 1)
+    {
+        printf("ft_matrix_mult : KO!\n");
+        return ;
+    }
+    printf("ft_matrix_mult :\tSuccess!\n");
+}
+
 int main(void)
 {
     test_matrix_new();
     test_matrix_get();
     test_matrix_set();
     test_matrix_create();
+    test_matrix_mult();
 }
