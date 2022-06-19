@@ -10,6 +10,21 @@ size_t  ft_strlen(char  *str)
     return (i);
 }
 
+void    *ft_memcpy(void *dst, const void *src, size_t len)
+{
+    size_t  i;
+
+    if (!(dst || src))
+        return (dst);
+    i = 0;
+    while (i < len)
+    {
+        ((unsigned char *)dst)[i] = *(unsigned char *)src++;
+        i++;
+    }
+    return (dst);
+}
+
 void    *ft_calloc(size_t n_elem, size_t t_size)
 {
     void    *ret;

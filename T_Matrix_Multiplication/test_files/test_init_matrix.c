@@ -1,7 +1,5 @@
 #include "../includes/my_matrix.h"
-
 #include <stdio.h>
-#include <time.h>
 
 /* ------- Tester utils ------- */
 
@@ -21,6 +19,7 @@ int cmp_matrix(t_matrix *matA, t_matrix *matB)
     return (0);
 }
 
+// Prints the matrix passed as the parameter.
 void    print_matrix(t_matrix *matrix)
 {
     size_t  i;
@@ -36,22 +35,6 @@ void    print_matrix(t_matrix *matrix)
             write(1, "\n", 1);
         else
             write(1, "\t", 1);
-        i++;
-    }
-}
-
-float   get_random_num(int lower_lim, int upper_lim)
-{
-    return ((rand() % (upper_lim - lower_lim + 1)) + lower_lim);
-}
-
-void    populate_matrix(t_matrix *matrix)
-{
-    size_t i = 0;
-
-    while (i < (matrix->row * matrix->col))
-    {
-        matrix->matrix[i] = get_random_num(0, 10);
         i++;
     }
 }
@@ -81,7 +64,7 @@ void    test_matrix_new(void)
         }
         i++;
     }
-    printf("ft_matrix_new : Success!\n");
+    printf("ft_matrix_new :\tSuccess!\n");
     ft_matrix_del(matrix);
 }
 
@@ -106,7 +89,7 @@ void    test_matrix_get(void)
         }
         i++;
     }
-    printf("ft_matrix_get : Success!\n");
+    printf("ft_matrix_get :\tSuccess!\n");
     ft_matrix_del(matrix);
 }
 
@@ -122,8 +105,34 @@ void    test_matrix_set(void)
         printf("ft_matrix_set : KO!\n");
         return ;
     }
-    printf("ft_matrix_set : Success!\n");
+    printf("ft_matrix_set :\tSuccess!\n");
     ft_matrix_del(matrix);
+}
+
+void    test_matrix_create(void)
+{
+    t_matrix    *matA;
+    t_matrix    *matB;
+    double      data_A[] = {1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0};
+    size_t      i = 0;
+
+    matA = ft_matrix_create(3, 3, data_A);
+    matB = ft_matrix_new(3, 3);
+
+    while (i < 9)
+    {
+        ft_matrix_set(matB, i / 3, i % 3, i + 1);
+        i++;
+    }
+
+    int j = cmp_matrix(matA, matB);
+
+    if (j == 1)
+    {
+        printf("ft_matrix_create : KO!\n");
+        return ;
+    }
+    printf("ft_matrix_create :\tSuccess!\n");
 }
 
 int main(void)
@@ -131,4 +140,5 @@ int main(void)
     test_matrix_new();
     test_matrix_get();
     test_matrix_set();
+    test_matrix_create();
 }
