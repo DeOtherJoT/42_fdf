@@ -164,6 +164,7 @@ void    test_matrix_mult(void)
     printf("ft_matrix_mult :\tSuccess!\n");
     ft_matrix_del(matA);
     ft_matrix_del(matB);
+    ft_matrix_del(result);
     ft_matrix_del(ans);
 }
 
