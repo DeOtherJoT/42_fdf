@@ -134,6 +134,8 @@ void    test_matrix_create(void)
         return ;
     }
     printf("ft_matrix_create :\tSuccess!\n");
+    ft_matrix_del(matA);
+    ft_matrix_del(matB);
 }
 
 void    test_matrix_mult(void)
