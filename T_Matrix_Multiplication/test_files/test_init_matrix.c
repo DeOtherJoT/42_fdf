@@ -3,6 +3,7 @@
 
 /* ------- Tester utils ------- */
 
+// Compares the two matrices passed as parameters. Returns 0 if equal, 1 otherwise.
 int cmp_matrix(t_matrix *matA, t_matrix *matB)
 {
     size_t  i;
@@ -64,7 +65,7 @@ void    test_matrix_new(void)
         }
         i++;
     }
-    printf("ft_matrix_new :\tSuccess!\n");
+    printf("ft_matrix_new :\t\tSuccess!\n");
     ft_matrix_del(matrix);
 }
 
@@ -89,7 +90,7 @@ void    test_matrix_get(void)
         }
         i++;
     }
-    printf("ft_matrix_get :\tSuccess!\n");
+    printf("ft_matrix_get :\t\tSuccess!\n");
     ft_matrix_del(matrix);
 }
 
@@ -105,7 +106,7 @@ void    test_matrix_set(void)
         printf("ft_matrix_set : KO!\n");
         return ;
     }
-    printf("ft_matrix_set :\tSuccess!\n");
+    printf("ft_matrix_set :\t\tSuccess!\n");
     ft_matrix_del(matrix);
 }
 
