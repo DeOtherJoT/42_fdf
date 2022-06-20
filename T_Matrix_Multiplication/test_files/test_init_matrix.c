@@ -168,11 +168,29 @@ void    test_matrix_mult(void)
     ft_matrix_del(ans);
 }
 
+void    test_matrix_ident(void)
+{
+    t_matrix    *matA;
+    t_matrix    *matB;
+    double      data[] = {1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0};
+
+    matA = ft_matrix_ident(3);
+    matB = ft_matrix_create(3, 3, data);
+
+    if (cmp_matrix(matA, matB) == 0)
+        printf("ft_matrix_ident :\tSuccess!\n");
+    else
+        printf("ft_matrix_ident : KO!\n");
+    ft_matrix_del(matA);
+    ft_matrix_del(matB);
+}
+
 int main(void)
 {
     test_matrix_new();
     test_matrix_get();
     test_matrix_set();
     test_matrix_create();
+    test_matrix_ident();
     test_matrix_mult();
 }

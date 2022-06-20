@@ -25,4 +25,6 @@ t_matrix    *ft_matrix_create(size_t row, size_t col, double *data);
 
 /* Matrix Multiplication */
 t_matrix    *ft_matrix_mult(t_matrix *matA, t_matrix *matB);
+t_matrix    *ft_matrix_ident(size_t size);
+
 #endif
