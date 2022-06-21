@@ -185,6 +185,60 @@ void    test_matrix_ident(void)
     ft_matrix_del(matB);
 }
 
+void    test_matrix_swap(void)
+{
+    t_matrix    *matA;
+    t_matrix    *matB;
+    t_matrix    *matC;
+    t_matrix    *matD;
+    double      data_A[] = {1.0, 2.0, 3.0, 4.0};
+    double      data_B[] = {1.0, 2.0, 3.0, 4.0};
+    double      data_C[] = {5.0, 6.0, 7.0, 8.0};
+    double      data_D[] = {5.0, 6.0, 7.0, 8.0};
+
+    matA = ft_matrix_create(2, 2, data_A);
+    matB = ft_matrix_create(2, 2, data_B);
+    matC = ft_matrix_create(2, 2, data_C);
+    matD = ft_matrix_create(2, 2, data_D);
+
+    ft_matrix_swap(matA, matC);
+
+    if (cmp_matrix(matA, matD) == 0 && cmp_matrix(matB, matC) == 0)
+        printf("ft_matrix_swap :\tSuccess!\n");
+    else
+        printf("ft_matrix_swap : KO!\n");
+
+    ft_matrix_del(matA);
+    ft_matrix_del(matB);
+    ft_matrix_del(matC);
+    ft_matrix_del(matD);
+}
+
+void    test_matrix_mult_swp(void)
+{
+    t_matrix    *res_mult;
+    t_matrix    *matA;
+    t_matrix    *matB;
+    double      data_A[] = {1.0, 2.0, 3.0, 4.0};
+    double      data_B[] = {4.0, 3.0, 2.0, 1.0};
+
+    matA = ft_matrix_create(2, 2, data_A);
+    matB = ft_matrix_create(2, 2, data_B);
+
+    res_mult = ft_matrix_mult(matA, matB);
+
+    ft_matrix_mult_swp(matA, matB);
+
+    if (cmp_matrix(res_mult, matA) == 0)
+        printf("ft_matrix_mult_swp :\tSuccess!\n");
+    else
+        printf("ft_matrix_mult_swp : KO!\n");
+
+    ft_matrix_del(res_mult);
+    ft_matrix_del(matA);
+    ft_matrix_del(matB);
+}
+
 int main(void)
 {
     test_matrix_new();
@@ -193,4 +247,6 @@ int main(void)
     test_matrix_create();
     test_matrix_ident();
     test_matrix_mult();
+    test_matrix_swap();
+    test_matrix_mult_swp();
 }

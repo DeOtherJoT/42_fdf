@@ -26,5 +26,7 @@ t_matrix    *ft_matrix_create(size_t row, size_t col, double *data);
 /* Matrix Multiplication */
 t_matrix    *ft_matrix_mult(t_matrix *matA, t_matrix *matB);
 t_matrix    *ft_matrix_ident(size_t size);
+void        ft_matrix_swap(t_matrix *matA, t_matrix *matB);
+void        ft_matrix_mult_swp(t_matrix *result, t_matrix *multiplier);
 
 #endif

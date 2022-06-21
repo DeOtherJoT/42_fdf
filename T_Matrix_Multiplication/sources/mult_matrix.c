@@ -17,6 +17,25 @@ t_matrix    *ft_matrix_ident(size_t size)
     return (ret);
 }
 
+void    ft_matrix_swap(t_matrix *matA, t_matrix *matB)
+{
+    double  *temp_data;
+    size_t  temp_row;
+    size_t  temp_col;
+
+    temp_row = matA->row;
+    temp_col = matA->col;
+    temp_data = matA->matrix;
+
+    matA->row = matB->row;
+    matA->col = matB->col;
+    matA->matrix = matB->matrix;
+
+    matB->row = temp_row;
+    matB->col = temp_col;
+    matB->matrix = temp_data;
+}
+
 t_matrix    *ft_matrix_mult(t_matrix *matA, t_matrix *matB)
 {
     t_matrix    *ret;
@@ -42,4 +61,13 @@ t_matrix    *ft_matrix_mult(t_matrix *matA, t_matrix *matB)
         i++;
     }
     return (ret);
+}
+
+void    ft_matrix_mult_swp(t_matrix *result, t_matrix *multiplier)
+{
+    t_matrix    *temp;
+
+    temp = ft_matrix_mult(result, multiplier);
+    ft_matrix_swap(temp, result);
+    ft_matrix_del(temp);
 }
