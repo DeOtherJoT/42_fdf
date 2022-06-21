@@ -2,6 +2,7 @@
 # define MY_MATRIX_H
 # include <unistd.h>
 # include <stdlib.h>
+# include <math.h>
 
 typedef struct  s_matrix
 {
@@ -28,5 +29,16 @@ t_matrix    *ft_matrix_mult(t_matrix *matA, t_matrix *matB);
 t_matrix    *ft_matrix_ident(size_t size);
 void        ft_matrix_swap(t_matrix *matA, t_matrix *matB);
 void        ft_matrix_mult_swp(t_matrix *result, t_matrix *multiplier);
+
+/* Affine Transformation */
+void    ft_matrix_translate(t_matrix *trans, double x, double y, double z);
+void    ft_matrix_scale(t_matrix *trans, double x, double y, double z);
+void    ft_matrix_shear(t_matrix *trans, double x, double y, double z);
+
+/* Affine Rotation */
+double  ft_deg_to_rad(double deg);
+void    ft_matrix_rotate_x(t_matrix *trans, double x);
+void    ft_matrix_rotate_y(t_matrix *trans, double y);
+void    ft_matrix_rotate_z(t_matrix *trans, double z);
 
 #endif
