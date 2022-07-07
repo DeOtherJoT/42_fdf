@@ -1,6 +1,14 @@
 #ifndef MAP_PARSE_H
 # define MAP_PARSE_H
 
+typedef struct	s_map
+{
+	size_t		row;
+	size_t		col;
+	t_matrix	**coord;
+	t_matrix	*trans_matrix;
+}	t_map;
+
 t_map	*parse_map(char *file);
 
 size_t	ft_row_get(char *file);

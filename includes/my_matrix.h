@@ -1,6 +1,13 @@
 #ifndef MY_MATRIX_H
 # define MY_MATRIX_H
 
+typedef struct	s_matrix
+{
+	size_t	row;
+	size_t	col;
+	double	*matrix;
+}	t_matrix;
+
 /* Basic Utils */
 void		*ft_calloc(size_t n_elem, size_t t_size);
 void		*ft_memcpy(void *dst, const void *src, size_t len);
@@ -21,14 +28,14 @@ void		ft_matrix_swap(t_matrix *matA, t_matrix *matB);
 void		ft_matrix_mult_swp(t_matrix *result, t_matrix *multiplier);
 
 /* Affine Transformation */
-void	ft_matrix_translate(t_matrix *trans, double x, double y, double z);
-void	ft_matrix_scale(t_matrix *trans, double x, double y, double z);
-void	ft_matrix_shear(t_matrix *trans, double x, double y, double z);
+void		ft_matrix_translate(t_matrix *trans, double x, double y, double z);
+void		ft_matrix_scale(t_matrix *trans, double x, double y, double z);
+void		ft_matrix_shear(t_matrix *trans, double x, double y, double z);
 
 /* Affine Rotation */
-double	ft_deg_to_rad(double deg);
-void	ft_matrix_rotate_x(t_matrix *trans, double x);
-void	ft_matrix_rotate_y(t_matrix *trans, double y);
-void	ft_matrix_rotate_z(t_matrix *trans, double z);
+double		ft_deg_to_rad(double deg);
+void		ft_matrix_rotate_x(t_matrix *trans, double x);
+void		ft_matrix_rotate_y(t_matrix *trans, double y);
+void		ft_matrix_rotate_z(t_matrix *trans, double z);
 
 #endif
