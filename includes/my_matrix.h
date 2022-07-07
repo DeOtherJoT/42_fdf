@@ -9,9 +9,6 @@ typedef struct	s_matrix
 }	t_matrix;
 
 /* Basic Utils */
-void		*ft_calloc(size_t n_elem, size_t t_size);
-void		*ft_memcpy(void *dst, const void *src, size_t len);
-size_t		ft_strlen(char *str);
 void		err_msg(char *str);
 
 /* Basic Matrix Functions */
