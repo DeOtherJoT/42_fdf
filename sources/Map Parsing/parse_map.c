@@ -50,29 +50,32 @@ size_t	ft_col_get(char *file)
 	return (ret);
 }
 
-void	ft_map_fill_data(t_map *map, int fd)
+void	ft_check_col(const char *str, size_t col)
+{
+	if (ft_strlen(str) != col)
+		err_msg("Map is not formatted properly");
+}
+
+// Not fixed
+void	fill_coords(t_map *map, int fd)
 {
 	size_t	i;
-	size_t	col;
 	double	k;
 	char	**temp_split;
 
 	k = 100;
 	i = 0;
-	col = map->col;
 	temp_split = ft_split(get_next_line(fd), ' ');
+	ft_check_col(temp_split, map->col);
 	while (i < (map->col * map->row))
 	{
-		if (ft_check_col(temp_split) != map->col)
-			err_msg("Map is not formatted properly");
-		// fix this
-		map->coord[i] = ft_vector_new((i % col) * k, (i / col) * k, 
-											ft_atoi(*temp_split), 1);
+		map->coord[i] = ft_matrix_new(4, 1);
 		temp_split++;
 		if (*temp_split == NULL)
 		{
 			ft_free_array(temp_split);
 			temp_split = ft_split(get_next_line(fd), ' ');
+			ft_check_col(temp_split, map->col);
 		}
 		i++;
 	}
@@ -89,7 +92,7 @@ t_map	*parse_map(char *file)
 	col = ft_col_get(file);
 	ret = ft_map_new(row, col);
 	fd = open(file, O_RDONLY);
-	ft_map_fill_data(ret, file);
+	fill_coords(ret, file);
 	close(fd);
 
 	return (ret);
