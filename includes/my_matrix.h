@@ -8,9 +8,6 @@ typedef struct	s_matrix
 	double	*matrix;
 }	t_matrix;
 
-/* Basic Utils */
-void		err_msg(char *str);
-
 /* Basic Matrix Functions */
 t_matrix	*ft_matrix_new(size_t rows, size_t col);
 void		ft_matrix_del(t_matrix *matrix);
