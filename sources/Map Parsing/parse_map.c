@@ -45,33 +45,49 @@ size_t	ft_col_get(char *file)
 	if (ret == 0)
 		err_msg("File invalid");
 	free(temp_gnl);
-	free(temp_split);
+	ft_free_array(temp_split);
 	close(fd);
 	return (ret);
 }
 
-void	ft_check_col(const char *str, size_t col)
+void	ft_check_col(const char **str, size_t col)
 {
-	if (ft_strlen(str) != col)
-		err_msg("Map is not formatted properly");
+	static int	i;
+	size_t		x;
+
+	i = 0;
+	if (str == NULL)
+	{
+		if (i = 0)
+			err_msg(".fdf file is not formatted properly");
+		else
+			return ;
+	}
+	x = 0;
+	while (str[i] != NULL)
+		x++;
+	if (x != col)
+		err_msg(".fdf file is not formatted properly");
 }
 
-// Not fixed
 void	fill_coords(t_map *map, int fd)
 {
 	size_t	i;
 	double	k;
 	char	**temp_split;
 
-	k = 100;
+	k = 10;
 	i = 0;
 	temp_split = ft_split(get_next_line(fd), ' ');
 	ft_check_col(temp_split, map->col);
 	while (i < (map->col * map->row))
 	{
 		map->coord[i] = ft_matrix_new(4, 1);
-		temp_split++;
-		if (*temp_split == NULL)
+		ft_matrix_set(map->coord[i], 0, 0, (i % map->col) * k);
+		ft_matrix_set(map->coord[i], 1, 0, (i / map->col) * k);
+		ft_matrix_set(map->coord[i], 2, 0, (double)ft_atoi(temp_split[i % map->col]));
+		ft_matrix_set(map->coord[i], 3, 0, 1);
+		if (temp_split[i % map->col] == NULL)
 		{
 			ft_free_array(temp_split);
 			temp_split = ft_split(get_next_line(fd), ' ');
