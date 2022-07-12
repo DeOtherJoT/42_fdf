@@ -13,7 +13,7 @@ size_t	ft_row_get(char *file)
 	while (1 == 1)
 	{
 		temp = get_next_line(fd);
-		if (temp == NULL)
+		if (temp == NULL || temp[0] == '\n')
 			break ;
 		ret++;
 		free(temp);
@@ -45,12 +45,13 @@ size_t	ft_col_get(char *file)
 	if (ret == 0)
 		err_msg("File invalid");
 	free(temp_gnl);
-	ft_free_array(temp_split);
+	free(temp_split);
 	close(fd);
 	return (ret);
 }
 
-void	ft_check_col(const char **str, size_t col)
+#include <stdio.h> //
+void	ft_check_col(char **str, size_t col)
 {
 	static int	i;
 	size_t		x;
@@ -58,15 +59,18 @@ void	ft_check_col(const char **str, size_t col)
 	i = 0;
 	if (str == NULL)
 	{
-		if (i = 0)
+		if (i == 0)
 			err_msg(".fdf file is not formatted properly");
 		else
 			return ;
 	}
 	i++;
 	x = 0;
-	while (str[i] != NULL)
+	while (str[x] != NULL)
+	{
+		printf("%s\n", str[x]);
 		x++;
+	}
 	if (x != col)
 		err_msg(".fdf file is not formatted properly");
 }
@@ -79,7 +83,9 @@ void	fill_coords(t_map *map, int fd)
 
 	k = 10;
 	i = 0;
-	temp_split = ft_split(get_next_line(fd), ' ');
+	char	*temp = get_next_line(fd);
+	printf("%s\n", temp);
+	temp_split = ft_split(temp, ' ');
 	ft_check_col(temp_split, map->col);
 	while (i < (map->col * map->row))
 	{
@@ -109,7 +115,7 @@ t_map	*parse_map(char *file)
 	col = ft_col_get(file);
 	ret = ft_map_new(row, col);
 	fd = open(file, O_RDONLY);
-	fill_coords(ret, file);
+	fill_coords(ret, fd);
 	close(fd);
 	return (ret);
 }
