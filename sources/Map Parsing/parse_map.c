@@ -38,58 +38,41 @@ size_t	ft_col_get(char *file)
 	temp_gnl = get_next_line(fd);
 	temp_split = ft_split(temp_gnl, ' ');
 	while (temp_split[ret] != NULL)
-	{
-		free(temp_split[ret]);
 		ret++;
-	}
 	if (ret == 0)
 		err_msg("File invalid");
 	free(temp_gnl);
-	free(temp_split);
+	ft_free_array(temp_split);
 	close(fd);
 	return (ret);
 }
 
-#include <stdio.h> //
 void	ft_check_col(char **str, size_t col)
 {
-	static int	i;
 	size_t		x;
 
-	i = 0;
 	if (str == NULL)
-	{
-		if (i == 0)
-			err_msg(".fdf file is not formatted properly");
-		else
-			return ;
-	}
-	i++;
+		return;
 	x = 0;
 	while (str[x] != NULL)
-	{
-		printf("%s\n", str[x]);
 		x++;
-	}
 	if (x != col)
-		err_msg(".fdf file is not formatted properly");
+		err_msg("Format error : Inconsistent column length");
 }
 
-void	fill_coords(t_map *map, int fd)
+void	fill_coords(t_map *map, int fd, int k)
 {
 	size_t	i;
-	double	k;
 	char	**temp_split;
+	char	*temp_gnl;
 
-	k = 10;
-	i = 0;
-	char	*temp = get_next_line(fd);
-	printf("%s\n", temp);
-	temp_split = ft_split(temp, ' ');
+	i = -1;
+	temp_gnl = get_next_line(fd);
+	temp_split = ft_split(temp_gnl, ' ');
 	ft_check_col(temp_split, map->col);
 	while (i < (map->col * map->row))
 	{
-		map->coord[i] = ft_matrix_new(4, 1);
+		map->coord[i++] = ft_matrix_new(4, 1);
 		ft_matrix_set(map->coord[i], 0, 0, (i % map->col) * k);
 		ft_matrix_set(map->coord[i], 1, 0, (i / map->col) * k);
 		ft_matrix_set(map->coord[i], 2, 0, ft_atoi(temp_split[i % map->col]));
@@ -97,10 +80,11 @@ void	fill_coords(t_map *map, int fd)
 		if ((i + 1) % map->col == 0)
 		{
 			ft_free_array(temp_split);
-			temp_split = ft_split(get_next_line(fd), ' ');
+			free(temp_gnl);
+			temp_gnl = get_next_line(fd);
+			temp_split = ft_split(temp_gnl, ' ');
 			ft_check_col(temp_split, map->col);
 		}
-		i++;
 	}
 }
 
@@ -115,7 +99,8 @@ t_map	*parse_map(char *file)
 	col = ft_col_get(file);
 	ret = ft_map_new(row, col);
 	fd = open(file, O_RDONLY);
-	fill_coords(ret, fd);
+	fill_coords(ret, fd, 10);
 	close(fd);
+	get_centre(ret);
 	return (ret);
 }

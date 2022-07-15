@@ -11,9 +11,8 @@ void	print_coord(t_matrix *coords)
 
 /* ------- Actual test functions ------- */
 
-void	test_row_get(void)
+void	test_row_get(char *file)
 {
-	char	file[] = "test_maps/basictest.fdf";
 	size_t	res = ft_row_get(file);
 
 	if (res == 9)
@@ -22,9 +21,8 @@ void	test_row_get(void)
 		err_msg("ft_row_get : KO");
 }
 
-void	test_col_get(void)
+void	test_col_get(char *file)
 {
-	char	file[] = "test_maps/basictest.fdf";
 	size_t	res = ft_col_get(file);
 
 	if (res == 11)
@@ -33,14 +31,9 @@ void	test_col_get(void)
 		err_msg("ft_col_get : KO");
 }
 
-void	test_map_new(void)
+void	test_map_new(char *file)
 {
-	char 	file[] = "test_maps/basictest.fdf";
 	t_map	*ret = parse_map(file);
-
-	if (!ret)
-		err_msg("parse_map : KO");
-
 	size_t	i = 0;
 
 	while (i < (ret->col * ret->row))
@@ -51,9 +44,10 @@ void	test_map_new(void)
 	printf("done");
 }
 
-int	main(void)
+int	main(int argc, char **argv)
 {
-	test_row_get();
-	test_col_get();
-	test_map_new();
+	(void)argc;
+	//test_row_get(argv[1]);
+	//test_col_get(argv[1]);
+	test_map_new(argv[1]);
 }

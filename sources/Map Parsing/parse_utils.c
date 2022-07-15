@@ -12,3 +12,8 @@ void	ft_free_array(char **str)
 	}
 	free(str);
 }
+
+void	get_centre(t_map *map)
+{
+	map->mid_x = ft_matrix_get(map);
+}

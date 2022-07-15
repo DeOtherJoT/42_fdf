@@ -6,7 +6,6 @@
 # include <mlx.h>
 
 # include "libft.h"
-# include "get_next_line.h"
 
 typedef struct s_data
 {
@@ -18,19 +17,24 @@ typedef struct s_data
 
 typedef struct	s_img
 {
-	void	*img_addr;
+	void	*addr;
 	int		bpp;
 	int		len;
-	int		endian;
+	int		end;
 }	t_img;
+
+typedef struct s_coord
+{
+	int		set0[2];
+	int		set1[2];
+}	t_coord;
 
 typedef struct	s_bla
 {
-	int		sx;
-	int		sy;
-	int		err;
-	int		dx;
-	int		dy;
+	int	dx;
+	int	dy;
+	int	var_d;
+	int	const_i;
 }	t_bla;
 
 typedef struct	s_matrix
@@ -46,7 +50,17 @@ typedef struct	s_map
 	size_t		col;
 	t_matrix	**coord;
 	t_matrix	*trans_matrix;
+	double		mid_x;
+	double		mid_y;
 }	t_map;
+
+/* -.- Driver Function -.- */
+
+/* Main File */
+
+
+/* Driver Utils */
+t_data *ft_data_new(void);
 
 /* -.- Matrix Functions -.- */
 
@@ -79,7 +93,7 @@ void		ft_matrix_rotate_z(t_matrix *trans, double z);
 /* Map Parsing */
 t_map		*parse_map(char *file);
 void		ft_check_col(char **str, size_t col);
-void		fill_coords(t_map *map, int fd);
+void		fill_coords(t_map *map, int fd, int k);
 size_t		ft_row_get(char *file);
 size_t		ft_col_get(char *file);
 
@@ -89,5 +103,29 @@ void		ft_free_array(char **str);
 /* Map Init */
 t_map		*ft_map_new(size_t row, size_t col);
 void		ft_map_del(t_map *map);
+
+/* -.- Bresenham Functions -.- */
+
+/* Bresenham Utils */
+int			ft_abs(double x);
+void		plot_pixel(int x, int y, t_img *img);
+
+/* Coord Init */
+t_coord		*ft_coords_new(t_matrix *matA, t_matrix *matB);
+void		ft_coords_del(t_coord *coord);
+
+/* Algorithm */
+void		plot_line(t_matrix *matA, t_matrix *matB, t_img *img);
+void		plot_line_low(int setA[2], int setB[2], t_img *img);
+void		plot_line_high(int setA[2], int setB[2], t_img *img);
+
+/* -.- GNL Function -.- */
+
+char		*get_next_line(int fd);
+ssize_t		read_buff(int fd, char **buff, ssize_t *read_ret);
+void		handle_buff(char **stat_str, char **buff);
+char		*final_line(char **stat_str);
+char		*ft_strldup(char const *s, int len);
+void		ft_handleptr(char **ptr, int mode);
 
 #endif
