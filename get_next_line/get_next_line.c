@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "../includes/fdf.h"
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  *                                                                           *
@@ -31,9 +31,9 @@ char	*get_next_line(int fd)
 	char		*buff;
 	ssize_t		read_ret;
 
-	if (fd < 0 || BUFFER_SIZE < 1)
+	if (fd < 0)
 		return (NULL);
-	buff = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
+	buff = (char *)malloc((2) * sizeof(char));
 	if (!buff)
 		return (NULL);
 	if (!stat_str)
@@ -62,7 +62,7 @@ ssize_t	read_buff(int fd, char **buff, ssize_t *read_ret)
 {
 	ssize_t	ret;
 
-	ret = read(fd, *buff, BUFFER_SIZE);
+	ret = read(fd, *buff, 1);
 	if (ret > 0)
 		(*buff)[ret] = '\0';
 	*read_ret = ret;
