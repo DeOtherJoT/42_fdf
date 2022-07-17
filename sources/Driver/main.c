@@ -9,7 +9,7 @@ int	close_prog(void)
 
 int	ft_handle_key(int keycode, t_map *map_data)
 {
-	if (keycode == 53)
+	if (keycode == ESC)
 		return (close_prog);
 	return (0);
 }
@@ -26,4 +26,5 @@ int	main(int argc, char **argv)
 	img = ft_img_new(data);
 	map_data = parse_map(argv[1]);
 	mlx_key_hook(data->win_ptr, ft_handle_key, map_data);
+	mlx_hook(data->win_ptr, 17, 0, close_prog, 0);
 }
