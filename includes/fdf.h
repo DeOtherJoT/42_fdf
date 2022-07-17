@@ -1,11 +1,22 @@
 #ifndef FDF_H
 # define FDF_H
 
+# define ESC 53
+# define UP 126
+# define LEFT 123
+# define RIGHT 124
+# define DOWN 125
+# define PLUS 24
+# define MINUS 27
+# define X 7
+# define Y 16
+# define Z 6
+
 # include <math.h>
 # include <fcntl.h>
 # include <mlx.h>
 
-# include "libft.h"
+# include "../libft/libft.h"
 
 typedef struct s_data
 {
@@ -59,8 +70,13 @@ typedef struct	s_map
 /* Main File */
 
 
-/* Driver Utils */
-t_data *ft_data_new(void);
+/* Main Helper*/
+void		transform_coords(t_map *map, t_matrix *multiplier);
+
+/* Init Data */
+t_data		*ft_data_new(void);
+t_img		*ft_img_new(t_data *data);
+void		ft_img_del(t_img *img, t_data *data);
 
 /* -.- Matrix Functions -.- */
 
@@ -99,6 +115,8 @@ size_t		ft_col_get(char *file);
 
 /* Map Utils */
 void		ft_free_array(char **str);
+void		get_centre(t_map *map, t_matrix **coords);
+void		centre_origin(t_map *map, double mid_x, double mid_y);
 
 /* Map Init */
 t_map		*ft_map_new(size_t row, size_t col);
