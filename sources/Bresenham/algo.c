@@ -1,5 +1,11 @@
 #include "../../includes/fdf.h"
 
+/*
+This file contains code taken (and translated) from Wikipedia's page on
+Bresenham's Line Algorithm.
+https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm
+*/
+
 void	plot_line_low(int setA[2], int setB[2], t_img *img)
 {
 	t_bla	dat;

@@ -1,11 +1,20 @@
 #include "../../includes/fdf.h"
 
+/*
+Helper function that returns the absolute value of the parameter x.
+*/
+
 int	ft_abs(double x)
 {
 	if (x < 0)
 		return (x * -1);
 	return (x);
 }
+
+/*
+Function that utilises the minilibx library to plot a pixel to an image
+instead of to the window for optimisation.
+*/
 
 void	plot_pixel(int x, int y, t_img *img)
 {
