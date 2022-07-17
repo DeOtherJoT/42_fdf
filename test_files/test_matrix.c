@@ -27,8 +27,8 @@ void	print_matrix(t_matrix *matrix)
 
 	i = 0;
 
-	printf("Row = %lld\n", matrix->row);
-	printf("Col = %lld\n", matrix->col);
+	printf("Row = %zu\n", matrix->row);
+	printf("Col = %zu\n", matrix->col);
 	while (i < (matrix->row * matrix->col))
 	{
 		printf("%f", matrix->matrix[i]);
@@ -239,6 +239,20 @@ void    test_matrix_mult_swp(void)
 	ft_matrix_del(matB);
 }
 
+void	test_matrix_cp(void)
+{
+	t_matrix	*matA = ft_matrix_ident(5);
+	t_matrix	*matB;
+
+	matB = ft_matrix_cp(matA);
+	if (cmp_matrix(matA, matB) == 0)
+		printf("ft_matrix_mult_swp :\tSuccess!\n");
+	else
+		printf("ft_matrix_mult_swp : KO!\n");
+	ft_matrix_del(matA);
+	ft_matrix_del(matB);
+}
+
 int main(void)
 {
 	test_matrix_new();
@@ -249,4 +263,5 @@ int main(void)
 	test_matrix_mult();
 	test_matrix_swap();
 	test_matrix_mult_swp();
+	test_matrix_cp();
 }

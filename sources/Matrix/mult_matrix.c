@@ -67,6 +67,15 @@ void	ft_matrix_mult_swp(t_matrix *result, t_matrix *multiplier)
 {
 	t_matrix	*temp;
 
+	temp = ft_matrix_mult(result, multiplier);
+	ft_matrix_swap(temp, result);
+	ft_matrix_del(temp);
+}
+
+void	ft_matrix_mult_swp2(t_matrix *result, t_matrix *multiplier)
+{
+	t_matrix	*temp;
+
 	temp = ft_matrix_mult(multiplier, result);
 	ft_matrix_swap(temp, result);
 	ft_matrix_del(temp);
