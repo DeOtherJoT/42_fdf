@@ -10,8 +10,21 @@ int	close_prog(void)
 int	ft_handle_key(int keycode, t_map *map_data)
 {
 	if (keycode == ESC)
-		return (close_prog);
+	{
+		close_prog();
+		return (0);
+	}
 	return (0);
+}
+
+void	render_first_img(t_data *data, t_img *img, t_map *map)
+{
+	map->trans_matrix = ft_matrix_ident(4);
+	ft_matrix_rotate_y(map->trans_matrix, 45);
+	ft_matrix_rotate_x(map->trans_matrix, 35.264);
+	ft_matrix_translate(map->trans_matrix, 960, 540, 0);
+	plot_map(map, img);
+	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img_ptr, 0, 0);
 }
 
 int	main(int argc, char **argv)
@@ -20,11 +33,13 @@ int	main(int argc, char **argv)
 	t_img	*img;
 	t_map	*map_data;
 
-	if (argc == 2)
+	if (argc != 2)
 		err_msg("Incorrect number of arguments.");
 	data = ft_data_new();
 	img = ft_img_new(data);
 	map_data = parse_map(argv[1]);
+	render_first_img(data, img, map_data);
 	mlx_key_hook(data->win_ptr, ft_handle_key, map_data);
 	mlx_hook(data->win_ptr, 17, 0, close_prog, 0);
+	mlx_loop(data->mlx_ptr);
 }
