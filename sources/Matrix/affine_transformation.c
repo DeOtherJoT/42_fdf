@@ -1,5 +1,10 @@
 #include "../../includes/fdf.h"
 
+/*
+Functions that applies the respective operations to the parameter trans and
+updates it.
+*/
+
 void	ft_matrix_translate(t_matrix *trans, double x, double y, double z)
 {
 	t_matrix	*multiplier;

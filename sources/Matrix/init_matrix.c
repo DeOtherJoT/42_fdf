@@ -1,5 +1,9 @@
 #include "../../includes/fdf.h"
 
+/*
+This file contains the constructor, destructor, getter and setter functions for the struct t_matrix
+*/
+
 t_matrix	*ft_matrix_new(size_t rows, size_t col)
 {
 	t_matrix	*ret;
@@ -40,6 +44,10 @@ void	ft_matrix_set(t_matrix *matrix, size_t row, size_t col, double val)
 		err_msg("Error at ft_matrix_set()");
 	matrix->matrix[col + (row * matrix->col)] = val;
 }
+
+/*
+A method to immediately assign the matrix data to a t_matrix struct
+*/
 
 t_matrix	*ft_matrix_create(size_t row, size_t col, double *data)
 {
