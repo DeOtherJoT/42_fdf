@@ -68,10 +68,20 @@ typedef struct	s_map
 /* -.- Driver Function -.- */
 
 /* Main File */
+int			close_prog(void);
+int			ft_handle_key(int keycode, t_map *map_data);
+void		render_first_img(t_data *data, t_img *img, t_map *map);
 
 
-/* Main Helper*/
-void		transform_coords(t_map *map, t_matrix *multiplier);
+/* Main Helper */
+void		transform_coord(t_matrix **coords, t_matrix *trans_mat, size_t n);
+void		plot_rows(t_map *map, t_matrix **dup, t_img *img);
+void		plot_cols(t_map *map, t_matrix **dup, t_img *img);
+void		plot_map(t_map *map, t_img *img);
+
+/* Main Utils */
+t_matrix	**ft_duplicate_coords(t_matrix **coords, size_t row, size_t col);
+void		ft_del_dup(t_matrix **dup, size_t n);
 
 /* Init Data */
 t_data		*ft_data_new(void);
@@ -92,6 +102,10 @@ t_matrix	*ft_matrix_mult(t_matrix *matA, t_matrix *matB);
 t_matrix	*ft_matrix_ident(size_t size);
 void		ft_matrix_swap(t_matrix *matA, t_matrix *matB);
 void		ft_matrix_mult_swp(t_matrix *result, t_matrix *multiplier);
+void		ft_matrix_mult_swp2(t_matrix *result, t_matrix *multiplier);
+
+/* Matrix Utils */
+t_matrix	*ft_matrix_cp(t_matrix *mat);
 
 /* Affine Transformation */
 void		ft_matrix_translate(t_matrix *trans, double x, double y, double z);

@@ -10,7 +10,8 @@ t_map	*ft_map_new(size_t row, size_t col)
 	ret->row = row;
 	ret->col = col;
 	ret->coord = malloc(row * col * sizeof(t_matrix *));
-	ret->trans_matrix = ft_matrix_ident(4);
+	if (!ret->coord)
+		err_msg("Malloc error : Coordinate matrix");
 	return (ret);
 }
 
