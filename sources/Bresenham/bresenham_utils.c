@@ -21,7 +21,10 @@ void	plot_pixel(int x, int y, t_img *img)
 	char	*dst;
 	int		offset;
 
-	offset = y * img->len + x * (img->bpp / 8);
-	dst = img->addr + offset;
-	*(unsigned int *)dst = 0x000000FF;
+	if (x > 0 && y > 0 && x < 1920 && y < 1080)
+	{
+		offset = y * img->len + x * (img->bpp / 8);
+		dst = img->addr + offset;
+		*(unsigned int *)dst = 0x0000FF00;
+	}
 }
