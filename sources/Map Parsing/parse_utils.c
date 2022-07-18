@@ -36,6 +36,11 @@ void	get_centre(t_map *map, t_matrix **coords)
 	index = (row * col) - 1;
 	map->mid_x = ft_matrix_get(coords[index], 0, 0) / 2;
 	map->mid_y = ft_matrix_get(coords[index], 1, 0) / 2;
+	map->centre_pt = ft_matrix_new(4, 1);
+	ft_matrix_set(map->centre_pt, 0, 0, map->mid_x);
+	ft_matrix_set(map->centre_pt, 1, 0, map->mid_y);
+	ft_matrix_set(map->centre_pt, 2, 0, 0);
+	ft_matrix_set(map->centre_pt, 3, 0, 1);
 }
 
 void	centre_origin(t_map *map, double mid_x, double mid_y)
