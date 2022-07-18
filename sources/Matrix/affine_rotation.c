@@ -1,9 +1,19 @@
 #include "../../includes/fdf.h"
 
+/*
+Helper function that converts the parameter deg in degrees and converts it to
+its radian equivalent.
+*/
+
 double  ft_deg_to_rad(double deg)
 {
 	return (deg * (M_PI / 180));
 }
+
+/*
+Functions that applies the respective rotations to the trans parameter and
+updates it.
+*/
 
 void	ft_matrix_rotate_x(t_matrix *trans, double x)
 {
