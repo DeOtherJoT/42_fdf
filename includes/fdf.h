@@ -61,6 +61,7 @@ typedef struct	s_map
 	size_t		col;
 	t_matrix	**coord;
 	t_matrix	*trans_matrix;
+	t_matrix	*centre_pt;
 	double		mid_x;
 	double		mid_y;
 }	t_map;
@@ -135,6 +136,7 @@ void		centre_origin(t_map *map, double mid_x, double mid_y);
 /* Map Init */
 t_map		*ft_map_new(size_t row, size_t col);
 void		ft_map_del(t_map *map);
+t_matrix	*ft_coord_get(t_map *map, t_matrix **dup, int row, int col);
 
 /* -.- Bresenham Functions -.- */
 
