@@ -70,12 +70,12 @@ void	fill_coords(t_map *map, int fd, int k)
 	temp_gnl = get_next_line(fd);
 	temp_split = ft_split(temp_gnl, ' ');
 	ft_check_col(temp_split, map->col);
-	while (++i < (map->row * map->col))
+	while (++i < (int)(map->row * map->col))
 	{
 		map->coord[i] = ft_matrix_new(4, 1);
 		ft_matrix_set(map->coord[i], 0, 0, (i % map->col) * k);
 		ft_matrix_set(map->coord[i], 1, 0, (i / map->col) * k);
-		ft_matrix_set(map->coord[i], 2, 0, ft_atoi(temp_split[i % map->col]));
+		ft_matrix_set(map->coord[i], 2, 0, ft_atoi(temp_split[i % map->col]) * -10);
 		ft_matrix_set(map->coord[i], 3, 0, 1);
 		if ((i + 1) % map->col == 0)
 		{
@@ -99,7 +99,7 @@ t_map	*parse_map(char *file)
 	col = ft_col_get(file);
 	ret = ft_map_new(row, col);
 	fd = open(file, O_RDONLY);
-	fill_coords(ret, fd, 10);
+	fill_coords(ret, fd, 50);
 	close(fd);
 	get_centre(ret, ret->coord);
 	centre_origin(ret, ret->mid_x, ret->mid_y);

@@ -246,9 +246,9 @@ void	test_matrix_cp(void)
 
 	matB = ft_matrix_cp(matA);
 	if (cmp_matrix(matA, matB) == 0)
-		printf("ft_matrix_mult_swp :\tSuccess!\n");
+		printf("ft_matrix_cp :\t\tSuccess!\n");
 	else
-		printf("ft_matrix_mult_swp : KO!\n");
+		printf("ft_matrix_cp : KO!\n");
 	ft_matrix_del(matA);
 	ft_matrix_del(matB);
 }
