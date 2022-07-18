@@ -28,3 +28,8 @@ void	ft_map_del(t_map *map)
 	free(map->coord);
 	ft_matrix_del(map->trans_matrix);
 }
+
+t_matrix	*ft_coord_get(t_map *map, t_matrix **dup, int row, int col)
+{
+	return (dup[col + (row * map->col)]);
+}

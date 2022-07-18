@@ -15,20 +15,18 @@ void	transform_coord(t_matrix **coords, t_matrix *trans_matrix, size_t n)
 void	plot_rows(t_map *map, t_matrix **dup, t_img *img)
 {
 	size_t	i;
-	size_t	k;
-	size_t	col;
-	size_t	row;
+	size_t	j;
 
 	i = 0;
-	k = 0;
-	col = map->col;
-	row = map->row;
-	while (i < (row * col))
+	while (i < map->row)
 	{
-		if ((i % col) + 1 != col)
-			plot_line(dup[(i % col) + k], dup[(i % col) + 1 + k], img);
-		else
-			k += col;
+		j = 0;
+		while (j < (map->col - 1))
+		{
+			plot_line(ft_coord_get(map, dup, i, j),
+				ft_coord_get(map, dup, i, j + 1), img);
+			j++;
+		}
 		i++;
 	}
 }
@@ -36,20 +34,18 @@ void	plot_rows(t_map *map, t_matrix **dup, t_img *img)
 void	plot_cols(t_map *map, t_matrix **dup, t_img *img)
 {
 	size_t	i;
-	size_t	k;
-	size_t	col;
-	size_t	row;
+	size_t	j;
 
 	i = 0;
-	k = 0;
-	col = map->col;
-	row = map->row;
-	while (i < ((row - 1) * col))
+	while (i < (map->row - 1))
 	{
-		if ((i % col) + 1 != col)
-			plot_line(dup[(i % col) + k], dup[(i % col) + col + k], img);
-		else
-			k += col;
+		j = 0;
+		while (j < (map->col))
+		{
+			plot_line(ft_coord_get(map, dup, i, j),
+				ft_coord_get(map, dup, i + 1, j), img);
+			j++;
+		}
 		i++;
 	}
 }
