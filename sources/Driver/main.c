@@ -7,14 +7,18 @@ int	close_prog(void)
 	return (1);
 }
 
-int	ft_handle_key(int keycode, t_map *map_data)
+int	ft_handle_key(int key, t_map *map_data)
 {
 	(void)map_data;
-	if (keycode == ESC)
+	if (key == ESC)
 	{
 		close_prog();
 		return (0);
 	}
+	if (key == UP || key == DOWN || key == LEFT || key == RIGHT)
+		bonus_translate(map_data);
+	if (key == PLUS || key == MINUS)
+		bonus_scale(map_data);
 	return (0);
 }
 
