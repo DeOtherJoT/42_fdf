@@ -4,7 +4,7 @@ static int	is_sep(char c, char *sep)
 {
 	while (*sep)
 	{
-		if (*sep = c)
+		if (*sep == c)
 			return (1);
 		sep++;
 	}
