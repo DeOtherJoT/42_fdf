@@ -1,6 +1,8 @@
 #ifndef FDF_H
 # define FDF_H
 
+# define SCR_WIDTH 1920
+# define SCR_HEIGHT 1080
 # define ESC 53
 # define UP 126
 # define LEFT 123
@@ -76,6 +78,7 @@ void		render_first_img(t_data *data, t_img *img, t_map *map);
 
 /* Main Helper */
 void		transform_coord(t_matrix **coords, t_matrix *trans_mat, size_t n);
+void		transform_centre(t_map *map);
 void		plot_rows(t_map *map, t_matrix **dup, t_img *img);
 void		plot_cols(t_map *map, t_matrix **dup, t_img *img);
 void		plot_map(t_map *map, t_img *img);
