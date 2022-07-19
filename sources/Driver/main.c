@@ -20,10 +20,11 @@ int	ft_handle_key(int keycode, t_map *map_data)
 
 void	render_first_img(t_data *data, t_img *img, t_map *map)
 {
-	map->trans_matrix = ft_matrix_ident(4);
-	ft_matrix_rotate_y(map->trans_matrix, 45);
-	ft_matrix_rotate_x(map->trans_matrix, -35.264);
-	ft_matrix_translate(map->trans_matrix, 540, 540, 0);
+	map->trans_rot = ft_matrix_ident(4);
+	map->trans_late = ft_matrix_ident(4);
+	ft_matrix_rotate_z(map->trans_rot, 45);
+	ft_matrix_rotate_x(map->trans_rot, 35.264);
+	ft_matrix_translate(map->trans_late, 960, 540, 0);
 	plot_map(map, img);
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img_ptr, 0, 0);
 }

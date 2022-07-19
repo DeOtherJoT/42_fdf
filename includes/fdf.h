@@ -62,10 +62,8 @@ typedef struct	s_map
 	size_t		row;
 	size_t		col;
 	t_matrix	**coord;
-	t_matrix	*trans_matrix;
-	t_matrix	*centre_pt;
-	double		mid_x;
-	double		mid_y;
+	t_matrix	*trans_rot;
+	t_matrix	*trans_late;
 }	t_map;
 
 /* -.- Driver Function -.- */
@@ -133,8 +131,7 @@ size_t		ft_col_get(char *file);
 
 /* Map Utils */
 void		ft_free_array(char **str);
-void		get_centre(t_map *map, t_matrix **coords);
-void		centre_origin(t_map *map, double mid_x, double mid_y);
+void		centre_origin(t_map *map, t_matrix **coords);
 
 /* Map Init */
 t_map		*ft_map_new(size_t row, size_t col);
@@ -157,7 +154,6 @@ void		plot_line_low(int setA[2], int setB[2], t_img *img);
 void		plot_line_high(int setA[2], int setB[2], t_img *img);
 
 /* -.- GNL Function -.- */
-
 char		*get_next_line(int fd);
 ssize_t		read_buff(int fd, char **buff, ssize_t *read_ret);
 void		handle_buff(char **stat_str, char **buff);

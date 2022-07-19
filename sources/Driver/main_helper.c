@@ -55,7 +55,8 @@ void	plot_map(t_map *map, t_img *img)
 	t_matrix	**temp;
 
 	temp = ft_duplicate_coords(map->coord, map->row, map->col);
-	transform_coord(temp, map->trans_matrix, (map->row * map->col));
+	transform_coord(temp, map->trans_rot, (map->row * map->col));
+	transform_coord(temp, map->trans_late, (map->row * map->col));
 	plot_rows(map, temp, img);
 	plot_cols(map, temp, img);
 	ft_del_dup(temp, (map->row * map->col));
