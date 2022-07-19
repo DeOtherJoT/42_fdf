@@ -75,7 +75,7 @@ void	fill_coords(t_map *map, int fd, int k)
 		map->coord[i] = ft_matrix_new(4, 1);
 		ft_matrix_set(map->coord[i], 0, 0, (i % map->col) * k);
 		ft_matrix_set(map->coord[i], 1, 0, (i / map->col) * k);
-		ft_matrix_set(map->coord[i], 2, 0, ft_atoi(temp_split[i % map->col]) * -10);
+		ft_matrix_set(map->coord[i], 2, 0, ft_atoi(temp_split[i % map->col]) * 10);
 		ft_matrix_set(map->coord[i], 3, 0, 1);
 		if ((i + 1) % map->col == 0)
 		{
@@ -101,7 +101,6 @@ t_map	*parse_map(char *file)
 	fd = open(file, O_RDONLY);
 	fill_coords(ret, fd, 50);
 	close(fd);
-	get_centre(ret, ret->coord);
-	centre_origin(ret, ret->mid_x, ret->mid_y);
+	centre_origin(ret, ret->coord);
 	return (ret);
 }
