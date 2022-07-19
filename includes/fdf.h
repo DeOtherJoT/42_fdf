@@ -57,6 +57,17 @@ typedef struct	s_matrix
 	double	*matrix;
 }	t_matrix;
 
+typedef struct	s_mod
+{
+	ssize_t	scale;
+	ssize_t	peak;
+	ssize_t	trans_x;
+	ssize_t	trans_y;
+	double	rot_x;
+	double	rot_y;
+	double	rot_z;
+}	t_mod;
+
 typedef struct	s_map
 {
 	size_t		row;
@@ -64,6 +75,7 @@ typedef struct	s_map
 	t_matrix	**coord;
 	t_matrix	*trans_rot;
 	t_matrix	*trans_late;
+	t_mod		*mod;
 }	t_map;
 
 /* -.- Driver Function -.- */
@@ -89,6 +101,11 @@ void		ft_del_dup(t_matrix **dup, size_t n);
 t_data		*ft_data_new(void);
 t_img		*ft_img_new(t_data *data);
 void		ft_img_del(t_img *img, t_data *data);
+
+/* -.- Bonus Functions -.- */
+
+/* Bonus Init */
+t_mod	*iso_init(size_t size);
 
 /* -.- Matrix Functions -.- */
 
@@ -125,13 +142,14 @@ void		ft_matrix_rotate_z(t_matrix *trans, double z);
 /* Map Parsing */
 t_map		*parse_map(char *file);
 void		ft_check_col(char **str, size_t col);
-void		fill_coords(t_map *map, int fd, int k);
+void		fill_coords(t_map *map, int fd, t_mod *mod);
 size_t		ft_row_get(char *file);
 size_t		ft_col_get(char *file);
 
 /* Map Utils */
 void		ft_free_array(char **str);
 void		centre_origin(t_map *map, t_matrix **coords);
+t_matrix	*ft_set_coords(int i, t_map *map, t_mod *mod, char **split);
 
 /* Map Init */
 t_map		*ft_map_new(size_t row, size_t col);

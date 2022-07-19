@@ -60,7 +60,7 @@ void	ft_check_col(char **str, size_t col)
 		err_msg("Format error : Inconsistent column length");
 }
 
-void	fill_coords(t_map *map, int fd, int k)
+void	fill_coords(t_map *map, int fd, t_mod *mod)
 {
 	int		i;
 	char	**temp_split;
@@ -68,21 +68,17 @@ void	fill_coords(t_map *map, int fd, int k)
 
 	i = -1;
 	temp_gnl = get_next_line(fd);
-	temp_split = ft_split(temp_gnl, ' ');
+	temp_split = ft_split_alt(temp_gnl, " \n");
 	ft_check_col(temp_split, map->col);
 	while (++i < (int)(map->row * map->col))
 	{
-		map->coord[i] = ft_matrix_new(4, 1);
-		ft_matrix_set(map->coord[i], 0, 0, (i % map->col) * k);
-		ft_matrix_set(map->coord[i], 1, 0, (i / map->col) * k);
-		ft_matrix_set(map->coord[i], 2, 0, ft_atoi(temp_split[i % map->col]) * 10);
-		ft_matrix_set(map->coord[i], 3, 0, 1);
+		map->coord[i] = ft_set_coords(i, map, mod, temp_split);
 		if ((i + 1) % map->col == 0)
 		{
 			ft_free_array(temp_split);
 			free(temp_gnl);
 			temp_gnl = get_next_line(fd);
-			temp_split = ft_split(temp_gnl, ' ');
+			temp_split = ft_split_alt(temp_gnl, " \n");
 			ft_check_col(temp_split, map->col);
 		}
 	}
@@ -98,8 +94,9 @@ t_map	*parse_map(char *file)
 	row = ft_row_get(file);
 	col = ft_col_get(file);
 	ret = ft_map_new(row, col);
+	ret->mod = iso_init(col * row);
 	fd = open(file, O_RDONLY);
-	fill_coords(ret, fd, 50);
+	fill_coords(ret, fd, ret->mod);
 	close(fd);
 	centre_origin(ret, ret->coord);
 	return (ret);

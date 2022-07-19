@@ -13,6 +13,18 @@ void	ft_free_array(char **str)
 	free(str);
 }
 
+t_matrix	*ft_set_coords(int i, t_map *map, t_mod *mod, char **split)
+{
+	t_matrix	*ret;
+
+	ret = ft_matrix_new(4, 1);
+	ft_matrix_set(ret, 0, 0, (i % map->col) * mod->scale);
+	ft_matrix_set(ret, 1, 0, (i / map->col) * mod->scale);
+	ft_matrix_set(ret, 2, 0, ft_atoi(split[i % map->col]) * mod->peak);
+	ft_matrix_set(ret, 3, 0, 1);
+	return (ret);
+}
+
 void	ft_translate_origin(t_matrix *coord, double x, double y, double z)
 {
 	t_matrix	*multiplier;
