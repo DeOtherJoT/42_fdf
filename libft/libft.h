@@ -63,6 +63,7 @@ void	ft_putnbr_fd(int n, int fd);
 
 /* -.- Added functions -.- */
 void	err_msg(const char *str);
+char	**ft_split_alt(char const *str, char *sep);
 
 /* -.- Bonus functions -.- */
 t_list	*ft_lstnew(void *content);
