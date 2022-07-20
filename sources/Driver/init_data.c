@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_data.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jthor <jthor@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/20 18:58:15 by jthor             #+#    #+#             */
+/*   Updated: 2022/07/20 18:58:36 by jthor            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/fdf.h"
 
 t_data	*ft_data_new(void)
@@ -17,12 +29,6 @@ t_img	*ft_img_new(t_data *data)
 	ret = malloc(sizeof(t_img));
 	data->img_ptr = mlx_new_image(data->mlx_ptr, SCR_WIDTH, SCR_HEIGHT);
 	ret->addr = mlx_get_data_addr(data->img_ptr,
-					&ret->bpp, &ret->len, &ret->end);
+			&ret->bpp, &ret->len, &ret->end);
 	return (ret);
-}
-
-void	ft_img_del(t_img *img, t_data *data)
-{
-	free(data->img_ptr);
-	free(img->addr);
 }

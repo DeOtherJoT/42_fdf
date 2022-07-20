@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fdf.h                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jthor <jthor@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/20 19:15:19 by jthor             #+#    #+#             */
+/*   Updated: 2022/07/20 19:15:21 by jthor            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FDF_H
 # define FDF_H
 
@@ -14,10 +26,15 @@
 # define K_O 31
 # define K_P 35
 # define K_J 38
-# define K_K 37
+# define K_K 40
 # define K_L 37
+# define K_B 11
 # define K_N 45
 # define K_M 46
+# define K_Z 6
+# define K_X 7
+# define K_C 8
+# define K_DEL 51
 
 # include <math.h>
 # include <fcntl.h>
@@ -32,7 +49,7 @@ typedef struct s_data
 	void	*img_ptr;
 }	t_data;
 
-typedef struct	s_img
+typedef struct s_img
 {
 	void	*addr;
 	int		bpp;
@@ -46,7 +63,7 @@ typedef struct s_coord
 	int		set1[2];
 }	t_coord;
 
-typedef struct	s_bla
+typedef struct s_bla
 {
 	int	dx;
 	int	dy;
@@ -54,17 +71,19 @@ typedef struct	s_bla
 	int	const_i;
 }	t_bla;
 
-typedef struct	s_matrix
+typedef struct s_matrix
 {
 	size_t	row;
 	size_t	col;
 	double	*matrix;
 }	t_matrix;
 
-typedef struct	s_mod
+typedef struct s_mod
 {
 	ssize_t	scale_i;
-	ssize_t	scale_k;
+	double	scale_x;
+	double	scale_y;
+	double	scale_z;
 	ssize_t	peak;
 	ssize_t	trans_x;
 	ssize_t	trans_y;
@@ -73,7 +92,7 @@ typedef struct	s_mod
 	double	rot_z;
 }	t_mod;
 
-typedef struct	s_map
+typedef struct s_map
 {
 	size_t		row;
 	size_t		col;
@@ -82,63 +101,76 @@ typedef struct	s_map
 	t_matrix	**coord;
 	t_matrix	*trans_rot;
 	t_matrix	*trans_late;
+	t_matrix	*trans_scale;
 	t_mod		*mod;
 }	t_map;
 
 /* -.- Driver Function -.- */
 
-/* Main File */
+// Main File
 int			close_prog(void);
 int			ft_handle_key(int keycode, t_map *map_data);
 void		render_first_img(t_data *data, t_img *img, t_map *map);
 
-
-/* Main Helper */
+// Main Helper
 void		transform_coord(t_matrix **coords, t_matrix *trans_mat, size_t n);
 void		transform_centre(t_map *map);
 void		plot_rows(t_map *map, t_matrix **dup, t_img *img);
 void		plot_cols(t_map *map, t_matrix **dup, t_img *img);
-void		plot_map(t_map *map, t_img *img);
+void		plot_map_iso(t_map *map, t_img *img);
 
-/* Main Utils */
+// Main Utils
 t_matrix	**ft_duplicate_coords(t_matrix **coords, size_t row, size_t col);
 void		ft_del_dup(t_matrix **dup, size_t n);
 
-/* Init Data */
+// Init Data
 t_data		*ft_data_new(void);
 t_img		*ft_img_new(t_data *data);
 void		ft_img_del(t_img *img, t_data *data);
 
 /* -.- Bonus Functions -.- */
 
-/* Bonus Init */
-t_mod	*iso_init(size_t size);
+// Bonus
+void		bonus_translate(t_map *map, int key);
+void		bonus_peak(t_map *map, int key);
+void		bonus_scale(t_map *map, int key);
+void		bonus_rotate(t_map *map, int key);
+void		bonus_reset(t_map *map);
+
+// Bonus Init
+t_mod		*iso_init(size_t size);
+
+// Bonus Helper
+void		ft_img_refresh(t_map *map);
+void		ft_trans_refresh(t_map *map, int flag);
+void		render_bonus_img(t_data *data, t_img *img, t_map *map);
+void		plot_map_bonus(t_map *map, t_img *img);
 
 /* -.- Matrix Functions -.- */
 
-/* Basic Matrix Functions */
+// Basic Matrix Functions
 t_matrix	*ft_matrix_new(size_t rows, size_t col);
 void		ft_matrix_del(t_matrix *matrix);
 double		ft_matrix_get(t_matrix *matrix, size_t row, size_t col);
 void		ft_matrix_set(t_matrix *matrix, size_t row, size_t col, double val);
 t_matrix	*ft_matrix_create(size_t row, size_t col, double *data);
 
-/* Matrix Multiplication */
+// Matrix Multiplication
 t_matrix	*ft_matrix_mult(t_matrix *matA, t_matrix *matB);
 t_matrix	*ft_matrix_ident(size_t size);
 void		ft_matrix_swap(t_matrix *matA, t_matrix *matB);
 void		ft_matrix_mult_swp(t_matrix *result, t_matrix *multiplier);
 void		ft_matrix_mult_swp2(t_matrix *result, t_matrix *multiplier);
 
-/* Matrix Utils */
+// Matrix Utils
 t_matrix	*ft_matrix_cp(t_matrix *mat);
 
-/* Affine Transformation */
+// Affine Transformation
 void		ft_matrix_translate(t_matrix *trans, double x, double y, double z);
 void		ft_matrix_scale(t_matrix *trans, double x, double y, double z);
 void		ft_matrix_shear(t_matrix *trans, double x, double y, double z);
 
-/* Affine Rotation */
+// Affine Rotation
 double		ft_deg_to_rad(double deg);
 void		ft_matrix_rotate_x(t_matrix *trans, double x);
 void		ft_matrix_rotate_y(t_matrix *trans, double y);
@@ -146,34 +178,34 @@ void		ft_matrix_rotate_z(t_matrix *trans, double z);
 
 /* -.- Map Functions -.- */
 
-/* Map Parsing */
+// Map Parsing
 t_map		*parse_map(char *file);
 void		ft_check_col(char **str, size_t col);
 void		fill_coords(t_map *map, int fd, t_mod *mod);
 size_t		ft_row_get(char *file);
 size_t		ft_col_get(char *file);
 
-/* Map Utils */
+// Map Utils
 void		ft_free_array(char **str);
 void		centre_origin(t_map *map, t_matrix **coords);
 t_matrix	*ft_set_coords(int i, t_map *map, t_mod *mod, char **split);
 
-/* Map Init */
+// Map Init
 t_map		*ft_map_new(size_t row, size_t col);
 void		ft_map_del(t_map *map);
 t_matrix	*ft_coord_get(t_map *map, t_matrix **dup, int row, int col);
 
 /* -.- Bresenham Functions -.- */
 
-/* Bresenham Utils */
+// Bresenham Utils
 int			ft_abs(double x);
 void		plot_pixel(int x, int y, t_img *img);
 
-/* Coord Init */
+// Coord Init
 t_coord		*ft_coords_new(t_matrix *matA, t_matrix *matB);
 void		ft_coords_del(t_coord *coord);
 
-/* Algorithm */
+// Algorithm
 void		plot_line(t_matrix *matA, t_matrix *matB, t_img *img);
 void		plot_line_low(int setA[2], int setB[2], t_img *img);
 void		plot_line_high(int setA[2], int setB[2], t_img *img);

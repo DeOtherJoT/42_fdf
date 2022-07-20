@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   bonus_init.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jthor <jthor@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/20 18:49:19 by jthor             #+#    #+#             */
+/*   Updated: 2022/07/20 18:49:24 by jthor            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/fdf.h"
 
 ssize_t	ft_decide_scale(size_t size)
@@ -22,7 +34,9 @@ t_mod	*iso_init(size_t size)
 	if (!ret)
 		err_msg("Failed at ft_iso_init");
 	ret->scale_i = ft_decide_scale(size);
-	ret->scale_k = 1;
+	ret->scale_x = 1;
+	ret->scale_y = 1;
+	ret->scale_z = 1;
 	ret->peak = 5;
 	ret->rot_x = 54.736;
 	ret->rot_z = 45;

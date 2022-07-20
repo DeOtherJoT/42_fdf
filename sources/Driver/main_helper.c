@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main_helper.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jthor <jthor@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/20 19:00:28 by jthor             #+#    #+#             */
+/*   Updated: 2022/07/20 19:00:31 by jthor            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/fdf.h"
 
 void	transform_coord(t_matrix **coords, t_matrix *trans_matrix, size_t n)
@@ -50,7 +62,7 @@ void	plot_cols(t_map *map, t_matrix **dup, t_img *img)
 	}
 }
 
-void	plot_map(t_map *map, t_img *img)
+void	plot_map_iso(t_map *map, t_img *img)
 {
 	t_matrix	**temp;
 

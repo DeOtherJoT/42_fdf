@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jthor <jthor@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/20 19:00:04 by jthor             #+#    #+#             */
+/*   Updated: 2022/07/20 19:00:07 by jthor            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/fdf.h"
 
 int	close_prog(void)
@@ -9,30 +21,33 @@ int	close_prog(void)
 
 int	ft_handle_key(int key, t_map *map_data)
 {
-	(void)map_data;
+	ft_img_refresh(map_data);
 	if (key == ESC)
 		close_prog();
 	if (key == UP || key == DOWN || key == LEFT || key == RIGHT)
-		bonus_translate(map_data);
+		bonus_translate(map_data, key);
 	if (key == PLUS || key == MINUS)
-		bonus_scale(map_data);
+		bonus_peak(map_data, key);
+	if (key == K_B || key == K_N || key == K_M || key == K_Z || key == K_X
+		|| key == K_C)
+		bonus_scale(map_data, key);
+	if (key == K_DEL)
+		bonus_reset(map_data);
 	else
-		bonus_rotate(map_data);
+		bonus_rotate(map_data, key);
 	return (0);
 }
 
 void	render_first_img(t_data *data, t_img *img, t_map *map)
 {
-	map->trans_rot = ft_matrix_ident(4);
-	map->trans_late = ft_matrix_ident(4);
+	ft_trans_refresh(map, 0);
 	ft_matrix_rotate_z(map->trans_rot, map->mod->rot_z);
 	ft_matrix_rotate_x(map->trans_rot, map->mod->rot_x);
 	ft_matrix_translate(map->trans_late, map->mod->trans_x,
-							map->mod->trans_y, 0);
-	plot_map(map, img);
+		map->mod->trans_y, 0);
+	plot_map_iso(map, img);
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
-								data->img_ptr, 0, 0);
-	ft_img_del(img, data);
+		data->img_ptr, 0, 0);
 }
 
 int	main(int argc, char **argv)
