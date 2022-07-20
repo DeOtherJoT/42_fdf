@@ -63,7 +63,8 @@ typedef struct	s_matrix
 
 typedef struct	s_mod
 {
-	ssize_t	scale;
+	ssize_t	scale_i;
+	ssize_t	scale_k;
 	ssize_t	peak;
 	ssize_t	trans_x;
 	ssize_t	trans_y;
