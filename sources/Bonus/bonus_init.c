@@ -8,8 +8,10 @@ ssize_t	ft_decide_scale(size_t size)
 		return (50);
 	else if (size < 1000)
 		return (25);
-	else
+	else if (size < 5000)
 		return (10);
+	else
+		return (5);
 }
 
 t_mod	*iso_init(size_t size)
@@ -19,9 +21,10 @@ t_mod	*iso_init(size_t size)
 	ret = malloc(sizeof(t_mod));
 	if (!ret)
 		err_msg("Failed at ft_iso_init");
-	ret->scale = ft_decide_scale(size);
-	ret->peak = 10;
-	ret->rot_x = 90 - 35.264;
+	ret->scale_i = ft_decide_scale(size);
+	ret->scale_k = 1;
+	ret->peak = 5;
+	ret->rot_x = 54.736;
 	ret->rot_z = 45;
 	ret->rot_y = 0;
 	ret->trans_x = 960;

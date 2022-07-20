@@ -10,9 +10,14 @@
 # define DOWN 125
 # define PLUS 24
 # define MINUS 27
-# define X 7
-# define Y 16
-# define Z 6
+# define K_I 34
+# define K_O 31
+# define K_P 35
+# define K_J 38
+# define K_K 37
+# define K_L 37
+# define K_N 45
+# define K_M 46
 
 # include <math.h>
 # include <fcntl.h>
@@ -25,7 +30,6 @@ typedef struct s_data
 	void	*mlx_ptr;
 	void	*win_ptr;
 	void	*img_ptr;
-	int		update;
 }	t_data;
 
 typedef struct	s_img
@@ -72,6 +76,8 @@ typedef struct	s_map
 {
 	size_t		row;
 	size_t		col;
+	t_data		*data;
+	t_img		*img;
 	t_matrix	**coord;
 	t_matrix	*trans_rot;
 	t_matrix	*trans_late;
