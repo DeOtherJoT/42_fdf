@@ -1,7 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_matrix.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jthor <jthor@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/20 19:06:45 by jthor             #+#    #+#             */
+/*   Updated: 2022/07/20 19:06:46 by jthor            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/fdf.h"
 
 /*
-This file contains the constructor, destructor, getter and setter functions for the struct t_matrix
+This file contains the constructor, destructor, getter and setter functions
+for the struct t_matrix
 */
 
 t_matrix	*ft_matrix_new(size_t rows, size_t col)
@@ -29,7 +42,7 @@ void	ft_matrix_del(t_matrix *mat)
 	free(mat);
 }
 
-double  ft_matrix_get(t_matrix *matrix, size_t row, size_t col)
+double	ft_matrix_get(t_matrix *matrix, size_t row, size_t col)
 {
 	if (row >= matrix->row || col >= matrix->col)
 		err_msg("Error at ft_matrix_get()");

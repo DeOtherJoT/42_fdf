@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   affine_rotation.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jthor <jthor@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/20 19:05:09 by jthor             #+#    #+#             */
+/*   Updated: 2022/07/20 19:05:11 by jthor            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/fdf.h"
 
 /*
@@ -5,7 +17,7 @@ Helper function that converts the parameter deg in degrees and converts it to
 its radian equivalent.
 */
 
-double  ft_deg_to_rad(double deg)
+double	ft_deg_to_rad(double deg)
 {
 	return (deg * (M_PI / 180));
 }

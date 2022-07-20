@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_map.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jthor <jthor@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/20 19:02:03 by jthor             #+#    #+#             */
+/*   Updated: 2022/07/20 19:02:04 by jthor            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/fdf.h"
 
 size_t	ft_row_get(char *file)
@@ -52,7 +64,7 @@ void	ft_check_col(char **str, size_t col)
 	size_t		x;
 
 	if (str == NULL)
-		return;
+		return ;
 	x = 0;
 	while (str[x] != NULL)
 		x++;

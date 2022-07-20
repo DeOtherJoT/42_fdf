@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   mult_matrix.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jthor <jthor@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/20 19:09:18 by jthor             #+#    #+#             */
+/*   Updated: 2022/07/20 19:09:40 by jthor            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/fdf.h"
 
 t_matrix	*ft_matrix_ident(size_t size)
@@ -19,18 +31,16 @@ t_matrix	*ft_matrix_ident(size_t size)
 
 void	ft_matrix_swap(t_matrix *matA, t_matrix *matB)
 {
-	double  *temp_data;
-	size_t  temp_row;
-	size_t  temp_col;
+	double	*temp_data;
+	size_t	temp_row;
+	size_t	temp_col;
 
 	temp_row = matA->row;
 	temp_col = matA->col;
 	temp_data = matA->matrix;
-
 	matA->row = matB->row;
 	matA->col = matB->col;
 	matA->matrix = matB->matrix;
-
 	matB->row = temp_row;
 	matB->col = temp_col;
 	matB->matrix = temp_data;
@@ -47,14 +57,14 @@ t_matrix	*ft_matrix_mult(t_matrix *matA, t_matrix *matB)
 		err_msg("Two matrices cannot be multiplied");
 	ret = ft_matrix_new(matA->row, matB->col);
 	i = 0;
-	while (i < (ret->row *ret->col))
+	while (i < (ret->row * ret->col))
 	{
 		temp_val = 0;
 		j = 0;
 		while (j < matA->col)
 		{
-			temp_val += ft_matrix_get(matA, i / ret->col, j) 
-						* ft_matrix_get(matB, j, i % ret->col);
+			temp_val += ft_matrix_get(matA, i / ret->col, j)
+				* ft_matrix_get(matB, j, i % ret->col);
 			j++;
 		}
 		ft_matrix_set(ret, i / ret->col, i % ret->col, temp_val);

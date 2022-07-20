@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   affine_transformation.c                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jthor <jthor@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/20 19:05:26 by jthor             #+#    #+#             */
+/*   Updated: 2022/07/20 19:07:04 by jthor            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/fdf.h"
 
 /*
@@ -43,4 +55,3 @@ void	ft_matrix_shear(t_matrix *trans, double x, double y, double z)
 	ft_matrix_mult_swp2(trans, multiplier);
 	ft_matrix_del(multiplier);
 }
-

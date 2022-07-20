@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_split_alt.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jthor <jthor@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/20 19:12:48 by jthor             #+#    #+#             */
+/*   Updated: 2022/07/20 19:12:53 by jthor            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
 static int	is_sep(char c, char *sep)
@@ -8,7 +20,7 @@ static int	is_sep(char c, char *sep)
 			return (1);
 		sep++;
 	}
-	return(0);
+	return (0);
 }
 
 static int	word_count(char const *s, char *sep)

@@ -1,4 +1,16 @@
-#include "../../includes/fdf.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_utils.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jthor <jthor@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/20 19:02:18 by jthor             #+#    #+#             */
+/*   Updated: 2022/07/20 19:02:19 by jthor            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+include "../../includes/fdf.h"
 
 void	ft_free_array(char **str)
 {
@@ -18,8 +30,8 @@ t_matrix	*ft_set_coords(int i, t_map *map, t_mod *mod, char **split)
 	t_matrix	*ret;
 
 	ret = ft_matrix_new(4, 1);
-	ft_matrix_set(ret, 0, 0, (i % map->col) * mod->scale);
-	ft_matrix_set(ret, 1, 0, (i / map->col) * mod->scale);
+	ft_matrix_set(ret, 0, 0, (i % map->col) * mod->scale_i);
+	ft_matrix_set(ret, 1, 0, (i / map->col) * mod->scale_i);
 	ft_matrix_set(ret, 2, 0, ft_atoi(split[i % map->col]) * mod->peak);
 	ft_matrix_set(ret, 3, 0, 1);
 	return (ret);
