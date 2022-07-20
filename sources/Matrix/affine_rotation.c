@@ -26,7 +26,7 @@ void	ft_matrix_rotate_x(t_matrix *trans, double x)
 	ft_matrix_set(multiplier, 1, 2, -sin(rad));
 	ft_matrix_set(multiplier, 2, 1, sin(rad));
 	ft_matrix_set(multiplier, 2, 2, cos(rad));
-	ft_matrix_mult_swp(trans, multiplier);
+	ft_matrix_mult_swp2(trans, multiplier);
 	ft_matrix_del(multiplier);
 }
 
@@ -41,7 +41,7 @@ void	ft_matrix_rotate_y(t_matrix *trans, double y)
 	ft_matrix_set(multiplier, 0, 2, sin(rad));
 	ft_matrix_set(multiplier, 2, 0, -sin(rad));
 	ft_matrix_set(multiplier, 2, 2, cos(rad));
-	ft_matrix_mult_swp(trans, multiplier);
+	ft_matrix_mult_swp2(trans, multiplier);
 	ft_matrix_del(multiplier);
 }
 
@@ -56,6 +56,6 @@ void	ft_matrix_rotate_z(t_matrix *trans, double z)
 	ft_matrix_set(multiplier, 0, 1, -sin(rad));
 	ft_matrix_set(multiplier, 1, 0, sin(rad));
 	ft_matrix_set(multiplier, 1, 1, cos(rad));
-	ft_matrix_mult_swp(trans, multiplier);
+	ft_matrix_mult_swp2(trans, multiplier);
 	ft_matrix_del(multiplier);
 }

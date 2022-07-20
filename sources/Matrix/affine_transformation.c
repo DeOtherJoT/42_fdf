@@ -13,7 +13,7 @@ void	ft_matrix_translate(t_matrix *trans, double x, double y, double z)
 	ft_matrix_set(multiplier, 0, 3, x);
 	ft_matrix_set(multiplier, 1, 3, y);
 	ft_matrix_set(multiplier, 2, 3, z);
-	ft_matrix_mult_swp(trans, multiplier);
+	ft_matrix_mult_swp2(trans, multiplier);
 	ft_matrix_del(multiplier);
 }
 
@@ -25,7 +25,7 @@ void	ft_matrix_scale(t_matrix *trans, double x, double y, double z)
 	ft_matrix_set(multiplier, 0, 0, x);
 	ft_matrix_set(multiplier, 1, 1, y);
 	ft_matrix_set(multiplier, 2, 2, z);
-	ft_matrix_mult_swp(trans, multiplier);
+	ft_matrix_mult_swp2(trans, multiplier);
 	ft_matrix_del(multiplier);
 }
 
@@ -40,7 +40,7 @@ void	ft_matrix_shear(t_matrix *trans, double x, double y, double z)
 	ft_matrix_set(multiplier, 1, 2, y * z);
 	ft_matrix_set(multiplier, 2, 0, z * x);
 	ft_matrix_set(multiplier, 2, 1, z * y);
-	ft_matrix_mult_swp(trans, multiplier);
+	ft_matrix_mult_swp2(trans, multiplier);
 	ft_matrix_del(multiplier);
 }
 
