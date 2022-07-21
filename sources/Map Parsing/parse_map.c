@@ -48,7 +48,7 @@ size_t	ft_col_get(char *file)
 		err_msg("File cannot be opened");
 	ret = 0;
 	temp_gnl = get_next_line(fd);
-	temp_split = ft_split(temp_gnl, ' ');
+	temp_split = ft_split_alt(temp_gnl, " \n");
 	while (temp_split[ret] != NULL)
 		ret++;
 	if (ret == 0)
