@@ -184,9 +184,10 @@ void		fill_coords(t_map *map, int fd, t_mod *mod);
 size_t		ft_row_get(char *file);
 size_t		ft_col_get(char *file);
 
-// Map Utils
+// Parse Utils
 void		ft_free_array(char **str);
 void		centre_origin(t_map *map, t_matrix **coords);
+void		ft_translate_origin(t_matrix *coord, double x, double y, double z);
 t_matrix	*ft_set_coords(int i, t_map *map, t_mod *mod, char **split);
 
 // Map Init

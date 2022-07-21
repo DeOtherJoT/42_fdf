@@ -14,27 +14,27 @@
 
 ssize_t	ft_decide_scale(size_t size)
 {
-	if (size < 100)
-		return (75);
-	else if (size < 500)
+	if (size <= 1000)
 		return (50);
-	else if (size < 1000)
+	else if (size <= 5000)
 		return (25);
-	else if (size < 5000)
+	else if (size <= 7500)
 		return (10);
-	else
+	else if (size <= 10000)
 		return (5);
+	else
+		return (3);
 }
 
 ssize_t	ft_decide_peak(size_t size)
 {
-	if (size < 100)
+	if (size <= 100)
 		return (5);
-	else if (size < 500)
+	else if (size <= 500)
 		return (4);
-	else if (size < 1000)
+	else if (size <= 1000)
 		return (3);
-	else if (size < 5000)
+	else if (size <= 5000)
 		return (2);
 	else
 		return (1);
