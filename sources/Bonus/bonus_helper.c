@@ -62,3 +62,30 @@ void	render_bonus_img(t_data *data, t_img *img, t_map *map)
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
 		data->img_ptr, 0, 0);
 }
+
+// void	plot_map_bonus(t_map *map, t_img *img)
+// {
+// 	t_matrix	**temp;
+// 	size_t		i;
+// 	size_t		j;
+
+// 	temp = ft_duplicate_coords(map->coord, map->row, map->col);
+// 	transform_coord(temp, map, (map->row * map->col), 1);
+// 	i = 0;
+// 	while (i < map->row)
+// 	{
+// 		j = 0;
+// 		while (j < map->col)
+// 		{
+// 			if (j != (map->col - 1))
+// 				plot_line(ft_coord_get(map, temp, i, j),
+// 					ft_coord_get(map, temp, i, j + 1), img);
+// 			if (i != (map->row - 1))
+// 				plot_line(ft_coord_get(map, temp, i, j),
+// 					ft_coord_get(map, temp, i + 1, j), img);
+// 			j++;
+// 		}
+// 		i++;
+// 	}
+// 	ft_del_dup(temp, (map->row * map->col));
+// }

@@ -112,12 +112,16 @@ int			close_prog(void);
 int			ft_handle_key(int keycode, t_map *map_data);
 void		render_first_img(t_data *data, t_img *img, t_map *map);
 
-// Main Helper
-void		transform_coord(t_matrix **coords, t_map *map, size_t n);
-t_matrix	*ft_coord_get(t_map *map, t_matrix **dup, int row, int col);
-void		plot_rows(t_map *map, t_matrix **dup, t_img *img);
-void		plot_cols(t_map *map, t_matrix **dup, t_img *img);
+// Main Helper 2
+t_matrix	*ft_get_trans(t_map *map, int row, int col);
 void		plot_map(t_map *map, t_img *img);
+
+// Main Helper
+// void		transform_coord(t_matrix **coords, t_map *map, size_t n, int flag);
+// t_matrix	*ft_coord_get(t_map *map, t_matrix **dup, int row, int col);
+// void		plot_rows(t_map *map, t_matrix **dup, t_img *img);
+// void		plot_cols(t_map *map, t_matrix **dup, t_img *img);
+// void		plot_map(t_map *map, t_img *img);
 
 // Main Utils
 t_matrix	**ft_duplicate_coords(t_matrix **coords, size_t row, size_t col);
@@ -144,6 +148,7 @@ t_mod		*iso_init(size_t size);
 void		ft_img_refresh(t_map *map);
 void		ft_trans_refresh(t_map *map, int flag);
 void		render_bonus_img(t_data *data, t_img *img, t_map *map);
+void		plot_map_bonus(t_map *map, t_img *img);
 
 /* -.- Matrix Functions -.- */
 
