@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-include "../../includes/fdf.h"
+#include "../../includes/fdf.h"
 
 void	ft_free_array(char **str)
 {

@@ -95,7 +95,7 @@ Implementation to reset to isometric projection
 
 void	bonus_reset(t_map *map)
 {
-	ffree(map->mod);
+	free(map->mod);
 	map->mod = iso_init(map->row * map->col);
 	render_first_img(map->data, map->img, map);
 }

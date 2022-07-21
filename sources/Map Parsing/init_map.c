@@ -41,8 +41,3 @@ void	ft_map_del(t_map *map)
 	ft_matrix_del(map->trans_rot);
 	ft_matrix_del(map->trans_late);
 }
-
-t_matrix	*ft_coord_get(t_map *map, t_matrix **dup, int row, int col)
-{
-	return (dup[col + (row * map->col)]);
-}

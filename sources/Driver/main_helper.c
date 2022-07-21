@@ -12,64 +12,48 @@
 
 #include "../../includes/fdf.h"
 
-void	transform_coord(t_matrix **coords, t_matrix *trans_matrix, size_t n)
+void	transform_coord(t_matrix **coords, t_map *map, size_t n)
 {
 	size_t	i;
 
 	i = 0;
 	while (i < n)
 	{
-		ft_matrix_mult_swp2(coords[i], trans_matrix);
+		ft_matrix_mult_swp2(coords[i], map->trans_scale);
+		ft_matrix_mult_swp2(coords[i], map->trans_rot);
+		ft_matrix_mult_swp2(coords[i], map->trans_late);
 		i++;
 	}
 }
 
-void	plot_rows(t_map *map, t_matrix **dup, t_img *img)
+t_matrix	*ft_coord_get(t_map *map, t_matrix **dup, int row, int col)
 {
-	size_t	i;
-	size_t	j;
+	return (dup[col + (row * map->col)]);
+}
 
+void	plot_map(t_map *map, t_img *img)
+{
+	t_matrix	**temp;
+	size_t		i;
+	size_t		j;
+
+	temp = ft_duplicate_coords(map->coord, map->row, map->col);
+	transform_coord(temp, map, (map->row * map->col));
 	i = 0;
 	while (i < map->row)
 	{
 		j = 0;
-		while (j < (map->col - 1))
+		while (j < map->col)
 		{
-			plot_line(ft_coord_get(map, dup, i, j),
-				ft_coord_get(map, dup, i, j + 1), img);
+			if (j != (map->col - 1))
+				plot_line(ft_coord_get(map, temp, i, j),
+					ft_coord_get(map, temp, i, j + 1), img);
+			if (i != (map->row - 1))
+				plot_line(ft_coord_get(map, temp, i, j),
+					ft_coord_get(map, temp, i + 1, j), img);
 			j++;
 		}
 		i++;
 	}
-}
-
-void	plot_cols(t_map *map, t_matrix **dup, t_img *img)
-{
-	size_t	i;
-	size_t	j;
-
-	i = 0;
-	while (i < (map->row - 1))
-	{
-		j = 0;
-		while (j < (map->col))
-		{
-			plot_line(ft_coord_get(map, dup, i, j),
-				ft_coord_get(map, dup, i + 1, j), img);
-			j++;
-		}
-		i++;
-	}
-}
-
-void	plot_map_iso(t_map *map, t_img *img)
-{
-	t_matrix	**temp;
-
-	temp = ft_duplicate_coords(map->coord, map->row, map->col);
-	transform_coord(temp, map->trans_rot, (map->row * map->col));
-	transform_coord(temp, map->trans_late, (map->row * map->col));
-	plot_rows(map, temp, img);
-	plot_cols(map, temp, img);
 	ft_del_dup(temp, (map->row * map->col));
 }

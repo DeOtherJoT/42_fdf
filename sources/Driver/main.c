@@ -24,14 +24,14 @@ int	ft_handle_key(int key, t_map *map_data)
 	ft_img_refresh(map_data);
 	if (key == ESC)
 		close_prog();
-	if (key == UP || key == DOWN || key == LEFT || key == RIGHT)
+	else if (key == UP || key == DOWN || key == LEFT || key == RIGHT)
 		bonus_translate(map_data, key);
-	if (key == PLUS || key == MINUS)
+	else if (key == PLUS || key == MINUS)
 		bonus_peak(map_data, key);
-	if (key == K_B || key == K_N || key == K_M || key == K_Z || key == K_X
-		|| key == K_C)
+	else if (key == K_B || key == K_N || key == K_M || key == K_Z
+		|| key == K_X || key == K_C)
 		bonus_scale(map_data, key);
-	if (key == K_DEL)
+	else if (key == K_DEL)
 		bonus_reset(map_data);
 	else
 		bonus_rotate(map_data, key);
@@ -45,7 +45,7 @@ void	render_first_img(t_data *data, t_img *img, t_map *map)
 	ft_matrix_rotate_x(map->trans_rot, map->mod->rot_x);
 	ft_matrix_translate(map->trans_late, map->mod->trans_x,
 		map->mod->trans_y, 0);
-	plot_map_iso(map, img);
+	plot_map(map, img);
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
 		data->img_ptr, 0, 0);
 }

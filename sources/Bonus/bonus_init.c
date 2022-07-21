@@ -26,6 +26,20 @@ ssize_t	ft_decide_scale(size_t size)
 		return (5);
 }
 
+ssize_t	ft_decide_peak(size_t size)
+{
+	if (size < 100)
+		return (5);
+	else if (size < 500)
+		return (4);
+	else if (size < 1000)
+		return (3);
+	else if (size < 5000)
+		return (2);
+	else
+		return (1);
+}
+
 t_mod	*iso_init(size_t size)
 {
 	t_mod	*ret;
@@ -37,7 +51,7 @@ t_mod	*iso_init(size_t size)
 	ret->scale_x = 1;
 	ret->scale_y = 1;
 	ret->scale_z = 1;
-	ret->peak = 5;
+	ret->peak = ft_decide_peak(size);
 	ret->rot_x = 54.736;
 	ret->rot_z = 45;
 	ret->rot_y = 0;

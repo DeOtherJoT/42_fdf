@@ -57,21 +57,8 @@ void	render_bonus_img(t_data *data, t_img *img, t_map *map)
 		map->mod->trans_y, 0);
 	ft_matrix_scale(map->trans_scale, map->mod->scale_x, map->mod->scale_y,
 		map->mod->scale_z);
-	plot_map_bonus(map, img);
+	plot_map(map, img);
 	mlx_clear_window(data->mlx_ptr, data->win_ptr);
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
 		data->img_ptr, 0, 0);
-}
-
-void	plot_map_bonus(t_map *map, t_img *img)
-{
-	t_matrix	**temp;
-
-	temp = ft_duplicate_coords(map->coord, map->row, map->col);
-	transform_coord(temp, map->trans_scale, (map->row * map->col));
-	transform_coord(temp, map->trans_rot, (map->row * map->col));
-	transform_coord(temp, map->trans_late, (map->row * map->col));
-	plot_rows(map, temp, img);
-	plot_cols(map, temp, img);
-	ft_del_dup(temp, (map->row * map->col));
 }
