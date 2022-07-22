@@ -12,6 +12,10 @@
 
 #include "../../includes/fdf.h"
 
+/*
+Allocates and returns an identity matrix that is size * size.
+*/
+
 t_matrix	*ft_matrix_ident(size_t size)
 {
 	t_matrix	*ret;
@@ -29,6 +33,10 @@ t_matrix	*ft_matrix_ident(size_t size)
 	return (ret);
 }
 
+/*
+Swaps two the two matrices passed as parameters.
+*/
+
 void	ft_matrix_swap(t_matrix *matA, t_matrix *matB)
 {
 	double	*temp_data;
@@ -45,6 +53,10 @@ void	ft_matrix_swap(t_matrix *matA, t_matrix *matB)
 	matB->col = temp_col;
 	matB->matrix = temp_data;
 }
+
+/*
+Multiplies the two matrices and returns the result as its own matrix.
+*/
 
 t_matrix	*ft_matrix_mult(t_matrix *matA, t_matrix *matB)
 {
@@ -73,6 +85,10 @@ t_matrix	*ft_matrix_mult(t_matrix *matA, t_matrix *matB)
 	return (ret);
 }
 
+/*
+Combining both ft_matrix_mult and ft_matrix_swap to get a right-multiply function.
+*/
+
 void	ft_matrix_mult_swp(t_matrix *result, t_matrix *multiplier)
 {
 	t_matrix	*temp;
@@ -81,6 +97,10 @@ void	ft_matrix_mult_swp(t_matrix *result, t_matrix *multiplier)
 	ft_matrix_swap(temp, result);
 	ft_matrix_del(temp);
 }
+
+/*
+Combining both ft_matrix_mult and ft_matrix_swap to get a left-multiply function.
+*/
 
 void	ft_matrix_mult_swp2(t_matrix *result, t_matrix *multiplier)
 {

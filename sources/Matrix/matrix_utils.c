@@ -12,6 +12,10 @@
 
 #include "../../includes/fdf.h"
 
+/*
+Initialises and returns a copy of the matrix passed as the parameter.
+*/
+
 t_matrix	*ft_matrix_cp(t_matrix *mat)
 {
 	t_matrix	*ret;

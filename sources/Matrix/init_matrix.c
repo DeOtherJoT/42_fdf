@@ -59,7 +59,7 @@ void	ft_matrix_set(t_matrix *matrix, size_t row, size_t col, double val)
 }
 
 /*
-A method to immediately assign the matrix data to a t_matrix struct
+Creates a matrix and assigns the data passed as the third parameter.
 */
 
 t_matrix	*ft_matrix_create(size_t row, size_t col, double *data)
