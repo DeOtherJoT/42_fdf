@@ -24,7 +24,7 @@ double	ft_deg_to_rad(double deg)
 
 /*
 Functions that applies the respective rotations to the trans parameter and
-updates it.
+updates it. Left multiplies the matrices.
 */
 
 void	ft_matrix_rotate_x(t_matrix *trans, double x)

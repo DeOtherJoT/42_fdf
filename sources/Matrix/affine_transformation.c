@@ -14,7 +14,7 @@
 
 /*
 Functions that applies the respective operations to the parameter trans and
-updates it.
+updates it. Left multiplies the matrices.
 */
 
 void	ft_matrix_translate(t_matrix *trans, double x, double y, double z)
