@@ -12,6 +12,10 @@
 
 #include "../../includes/fdf.h"
 
+/*
+This file contains the constructors for the t_data and t_img structs.
+*/
+
 t_data	*ft_data_new(void)
 {
 	t_data	*ret;

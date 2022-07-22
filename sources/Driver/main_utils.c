@@ -12,6 +12,10 @@
 
 #include "../../includes/fdf.h"
 
+/*
+Deletes the coordinate array created by ft_duplicate_coords().
+*/
+
 void	ft_del_dup(t_matrix **dup, size_t n)
 {
 	size_t	i;
@@ -24,6 +28,12 @@ void	ft_del_dup(t_matrix **dup, size_t n)
 	}
 	free(dup);
 }
+
+/*
+Duplicates the array of original coordinates centered around (0,0) in order
+to transform them and plot them to the image without actually updating the
+original coordinates.
+*/
 
 t_matrix	**ft_duplicate_coords(t_matrix **coords, size_t row, size_t col)
 {

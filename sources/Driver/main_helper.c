@@ -12,6 +12,11 @@
 
 #include "../../includes/fdf.h"
 
+/*
+Take the duplicated coordinates centered about (0,0) and transforms them
+according to the set transformation matrix.
+*/
+
 void	transform_coord(t_matrix **coords, t_map *map, size_t n)
 {
 	size_t	i;
@@ -25,10 +30,20 @@ void	transform_coord(t_matrix **coords, t_map *map, size_t n)
 	}
 }
 
+/*
+Gets a single coordinate from the duplicated coordinate array.
+*/
+
 t_matrix	*ft_coord_get(t_map *map, t_matrix **dup, int row, int col)
 {
 	return (dup[col + (row * map->col)]);
 }
+
+/*
+Takes the coordinates that are centered about (0,0), duplicates them,
+and transforms the duplicated coords. These transformed duplicates are
+then used to plot the projection onto the image instance.
+*/
 
 void	plot_map(t_map *map, t_img *img)
 {
