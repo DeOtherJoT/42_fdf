@@ -12,6 +12,12 @@
 
 #include "../../includes/fdf.h"
 
+/*
+This file contains the cnstructor and destructor for the t_coord struct,
+used to group two (x,y) coordinate sets for the Bresenham Line Algorithm
+to use.
+*/
+
 t_coord	*ft_coords_new(t_matrix *matA, t_matrix *matB)
 {
 	t_coord	*ret;

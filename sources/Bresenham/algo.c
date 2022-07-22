@@ -13,7 +13,7 @@
 #include "../../includes/fdf.h"
 
 /*
-This file contains code taken (and translated) from Wikipedia's page on
+This file contains code taken (and translated to C) from Wikipedia's page on
 Bresenham's Line Algorithm.
 https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm
 */
