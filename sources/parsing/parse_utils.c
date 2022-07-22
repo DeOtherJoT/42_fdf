@@ -25,32 +25,14 @@ void	ft_free_array(char **str)
 	free(str);
 }
 
-t_matrix	*ft_set_coords(int i, t_map *map, t_mod *mod, char **split)
+t_matrix	*ft_set_coords(int i, t_map *map, char **split)
 {
 	t_matrix	*ret;
 
 	ret = ft_matrix_new(4, 1);
-	ft_matrix_set(ret, 0, 0, (i % map->col) * mod->scale_i);
-	ft_matrix_set(ret, 1, 0, (i / map->col) * mod->scale_i);
-	ft_matrix_set(ret, 2, 0, ft_atoi(split[i % map->col]) * mod->peak);
-	ft_matrix_set(ret, 3, 0, 1);
+	ret->matrix[0] = (i % map->col) - (double)(map->col / 2);
+	ret->matrix[1] = (i / map->col) - (double)(map->row / 2);
+	ret->matrix[2] = ft_atoi(split[i % map->col]);
+	ret->matrix[3] = 1;
 	return (ret);
-}
-
-void	centre_origin(t_map *map, t_matrix **coords)
-{
-	size_t	index;
-	size_t	i;
-	double	mid_x;
-	double	mid_y;
-
-	index = (map->row * map->col) - 1;
-	mid_x = ft_matrix_get(coords[index], 0, 0) / 2;
-	mid_y = ft_matrix_get(coords[index], 1, 0) / 2;
-	i = 0;
-	while (i < (map->row * map->col))
-	{
-		ft_matrix_translate(map->coord[i], (mid_x * -1), (mid_y * -1), 0);
-		i++;
-	}
 }

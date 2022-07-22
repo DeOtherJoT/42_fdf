@@ -41,6 +41,7 @@ int	ft_handle_key(int key, t_map *map_data)
 void	render_first_img(t_data *data, t_img *img, t_mod *mod, t_map *map)
 {
 	ft_trans_refresh(map, 0);
+	ft_matrix_scale(map->trans_rot, mod->scale_x, mod->scale_y, mod->scale_z);
 	ft_matrix_rotate_z(map->trans_rot, mod->rot_z);
 	ft_matrix_rotate_x(map->trans_rot, mod->rot_x);
 	ft_matrix_translate(map->trans_late, 960, 540, 0);

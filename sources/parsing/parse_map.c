@@ -72,9 +72,9 @@ void	ft_check_col(char **str, size_t col)
 		err_msg("Format error : Inconsistent column length");
 }
 
-void	fill_coords(t_map *map, int fd, t_mod *mod)
+void	fill_coords(t_map *map, int fd)
 {
-	int		i;
+	size_t	i;
 	char	**temp_split;
 	char	*temp_gnl;
 
@@ -82,9 +82,9 @@ void	fill_coords(t_map *map, int fd, t_mod *mod)
 	temp_gnl = get_next_line(fd);
 	temp_split = ft_split_alt(temp_gnl, " \n");
 	ft_check_col(temp_split, map->col);
-	while (++i < (int)(map->row * map->col))
+	while (++i < (map->row * map->col))
 	{
-		map->coord[i] = ft_set_coords(i, map, mod, temp_split);
+		map->coord[i] = ft_set_coords(i, map, temp_split);
 		if ((i + 1) % map->col == 0)
 		{
 			ft_free_array(temp_split);
@@ -108,8 +108,7 @@ t_map	*parse_map(char *file)
 	ret = ft_map_new(row, col);
 	ret->mod = iso_init(col * row);
 	fd = open(file, O_RDONLY);
-	fill_coords(ret, fd, ret->mod);
+	fill_coords(ret, fd);
 	close(fd);
-	centre_origin(ret, ret->coord);
 	return (ret);
 }

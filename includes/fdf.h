@@ -80,11 +80,11 @@ typedef struct s_matrix
 
 typedef struct s_mod
 {
-	ssize_t	scale_i;
+	//ssize_t	scale_i;
 	double	scale_x;
 	double	scale_y;
 	double	scale_z;
-	ssize_t	peak;
+	//ssize_t	peak;
 	ssize_t	trans_x;
 	ssize_t	trans_y;
 	double	rot_x;
@@ -184,14 +184,14 @@ void		ft_matrix_rotate_z(t_matrix *trans, double z);
 // Map Parsing
 t_map		*parse_map(char *file);
 void		ft_check_col(char **str, size_t col);
-void		fill_coords(t_map *map, int fd, t_mod *mod);
+void		fill_coords(t_map *map, int fd);
 size_t		ft_row_get(char *file);
 size_t		ft_col_get(char *file);
 
 // Parse Utils
 void		ft_free_array(char **str);
 void		centre_origin(t_map *map, t_matrix **coords);
-t_matrix	*ft_set_coords(int i, t_map *map, t_mod *mod, char **split);
+t_matrix	*ft_set_coords(int i, t_map *map, char **split);
 
 // Map Init
 t_map		*ft_map_new(size_t row, size_t col);
