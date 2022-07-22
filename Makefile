@@ -38,8 +38,7 @@ all : $(NAME)
 
 $(NAME) : $(OBJS)
 	$(MAKE) re -C $(LIBFT)
-	ar rcs fdf.a $(OBJS)
-	$(GCC) $(MLX) $(INC) -o $(NAME) $(MAIN) fdf.a $(LIB)
+	$(GCC) $(MLX) $(INC) -o $(NAME) $(MAIN) $(OBJS) $(LIB)
 
 %.o : %.c
 	 $(GCC) $(INC) -c $< -o $@
