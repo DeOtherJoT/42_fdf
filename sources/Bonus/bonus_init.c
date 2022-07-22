@@ -40,6 +40,12 @@ ssize_t	ft_decide_peak(size_t size)
 		return (1);
 }
 
+/*
+Initialises the t_mod struct with initial values for an isometric projection.
+The scale and altitude modifications are determined based on how big the map
+is.
+*/
+
 t_mod	*iso_init(size_t size)
 {
 	t_mod	*ret;

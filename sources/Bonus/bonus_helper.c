@@ -44,6 +44,12 @@ void	ft_trans_refresh(t_map *map, int flag)
 	}
 }
 
+/*
+Renders an updated image after the transformation matrix is updated by a
+key press. Basically does the same thing as render_first_img() from the main.c
+file in the Driver folder.
+*/
+
 void	render_bonus_img(t_data *data, t_img *img, t_mod *mod, t_map *map)
 {
 	ft_trans_refresh(map, 1);
