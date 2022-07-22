@@ -12,6 +12,10 @@
 
 #include "../../includes/fdf.h"
 
+/*
+Frees an array previously allocated by ft_split.
+*/
+
 void	ft_free_array(char **str)
 {
 	size_t	i;
@@ -24,6 +28,10 @@ void	ft_free_array(char **str)
 	}
 	free(str);
 }
+
+/*
+Sets the coordinates by providing an (x, y) and placing the altitude as z.
+*/
 
 t_matrix	*ft_set_coords(int i, t_map *map, char **split)
 {

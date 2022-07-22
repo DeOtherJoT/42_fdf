@@ -12,6 +12,10 @@
 
 #include "../../includes/fdf.h"
 
+/*
+This file contains the constructor and destructor for the struct t_map.
+*/
+
 t_map	*ft_map_new(size_t row, size_t col)
 {
 	t_map	*ret;

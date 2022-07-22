@@ -12,6 +12,11 @@
 
 #include "../../includes/fdf.h"
 
+/*
+Opens the file and counts the number of rows in the file.
+Row is counted with every invocation of get_next_line.
+*/
+
 size_t	ft_row_get(char *file)
 {
 	int		fd;
@@ -36,6 +41,12 @@ size_t	ft_row_get(char *file)
 	return (ret);
 }
 
+/*
+Opens the file and counts the number of columns from the first row.
+The first row is extracted and seperate the numbers. Each number is then
+treated as one column.
+*/
+
 size_t	ft_col_get(char *file)
 {
 	int		fd;
@@ -59,6 +70,11 @@ size_t	ft_col_get(char *file)
 	return (ret);
 }
 
+/*
+For every row, check the number of columns with the first row.
+Exits the program if the number of colums are inconsistent.
+*/
+
 void	ft_check_col(char **str, size_t col)
 {
 	size_t		x;
@@ -71,6 +87,10 @@ void	ft_check_col(char **str, size_t col)
 	if (x != col)
 		err_msg("Format error : Inconsistent column length");
 }
+
+/*
+
+*/
 
 void	fill_coords(t_map *map, int fd)
 {
@@ -95,6 +115,12 @@ void	fill_coords(t_map *map, int fd)
 		}
 	}
 }
+
+/*
+Gets the size of the map from the fdf file and creates a new t_map instance.
+The individual altitudes are given a (x, y, z, w) coordinate location in
+fill_coords().
+*/
 
 t_map	*parse_map(char *file)
 {
