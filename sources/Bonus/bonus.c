@@ -25,7 +25,7 @@ void	bonus_translate(t_map *map, int key)
 		map->mod->trans_x -= 10;
 	else
 		map->mod->trans_x += 10;
-	render_bonus_img(map->data, map->img, map);
+	render_bonus_img(map->data, map->img, map->mod, map);
 }
 
 /*
@@ -38,7 +38,7 @@ void	bonus_peak(t_map *map, int key)
 		map->mod->scale_z *= 2;
 	else
 		map->mod->scale_z *= 0.5;
-	render_bonus_img(map->data, map->img, map);
+	render_bonus_img(map->data, map->img, map->mod, map);
 }
 
 /*
@@ -65,7 +65,7 @@ void	bonus_scale(t_map *map, int key)
 		map->mod->scale_x *= 0.5;
 		map->mod->scale_y *= 0.5;
 	}
-	render_bonus_img(map->data, map->img, map);
+	render_bonus_img(map->data, map->img, map->mod, map);
 }
 
 /*
@@ -86,7 +86,7 @@ void	bonus_rotate(t_map *map, int key)
 		map->mod->rot_y -= 10;
 	else if (key == K_L)
 		map->mod->rot_z -= 10;
-	render_bonus_img(map->data, map->img, map);
+	render_bonus_img(map->data, map->img, map->mod, map);
 }
 
 /*
@@ -97,5 +97,5 @@ void	bonus_reset(t_map *map)
 {
 	free(map->mod);
 	map->mod = iso_init(map->row * map->col);
-	render_first_img(map->data, map->img, map);
+	render_first_img(map->data, map->img, map->mod, map);
 }

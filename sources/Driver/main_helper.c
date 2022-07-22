@@ -12,15 +12,13 @@
 
 #include "../../includes/fdf.h"
 
-void	transform_coord(t_matrix **coords, t_map *map, size_t n, int flag)
+void	transform_coord(t_matrix **coords, t_map *map, size_t n)
 {
 	size_t	i;
 
 	i = 0;
 	while (i < n)
 	{
-		if (flag == 1)
-			ft_matrix_mult_swp2(coords[i], map->trans_scale);
 		ft_matrix_mult_swp2(coords[i], map->trans_rot);
 		ft_matrix_mult_swp2(coords[i], map->trans_late);
 		i++;
@@ -39,7 +37,7 @@ void	plot_map(t_map *map, t_img *img)
 	size_t		j;
 
 	temp = ft_duplicate_coords(map->coord, map->row, map->col);
-	transform_coord(temp, map, (map->row * map->col), 0);
+	transform_coord(temp, map, (map->row * map->col));
 	i = 0;
 	while (i < map->row)
 	{

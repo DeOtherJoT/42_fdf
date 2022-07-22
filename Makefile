@@ -12,7 +12,7 @@ RM		= rm -rf
 
 LIBFT	= libft
 INC		= -Iinclude -I$(LIBFT)
-LIB		= -L$(LIBFT) -lft
+LIB		= -L$(LIBFT) libft/libft.a
 SRC_DIR = sources/
 GNL_DIR = get_next_line/
 BNS_DIR	= sources/Bonus/
@@ -26,7 +26,7 @@ MAIN	= sources/Driver/main.c
 
 S_SRCS	= $(addprefix $(BNS_DIR), bonus_helper.c bonus_init.c bonus.c) \
 		  $(addprefix $(BLA_DIR), algo.c bresenham_utils.c init_coord.c) \
-		  $(addprefix $(DRV_DIR), init_data.c main_helper2.c main_utils.c) \
+		  $(addprefix $(DRV_DIR), init_data.c main_helper.c main_utils.c) \
 		  $(addprefix $(MAT_DIR), affine_rotation.c affine_transformation.c init_matrix.c matrix_utils.c mult_matrix.c) \
 		  $(addprefix $(PAR_DIR), init_map.c parse_map.c parse_utils.c) \
 		  $(addprefix $(GNL_DIR), get_next_line.c get_next_line_utils.c)
@@ -38,7 +38,8 @@ all : $(NAME)
 
 $(NAME) : $(OBJS)
 	$(MAKE) re -C $(LIBFT)
-	$(GCC) $(MLX) $(INC) -o $(NAME) $(MAIN) $(OBJS) $(LIB)
+	ar rcs fdf.a $(OBJS)
+	$(GCC) $(MLX) $(INC) -o $(NAME) $(MAIN) fdf.a $(LIB)
 
 %.o : %.c
 	 $(GCC) $(INC) -c $< -o $@

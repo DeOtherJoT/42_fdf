@@ -37,18 +37,6 @@ t_matrix	*ft_set_coords(int i, t_map *map, t_mod *mod, char **split)
 	return (ret);
 }
 
-void	ft_translate_origin(t_matrix *coord, double x, double y, double z)
-{
-	t_matrix	*multiplier;
-
-	multiplier = ft_matrix_ident(4);
-	ft_matrix_set(multiplier, 0, 3, x);
-	ft_matrix_set(multiplier, 1, 3, y);
-	ft_matrix_set(multiplier, 2, 3, z);
-	ft_matrix_mult_swp2(coord, multiplier);
-	ft_matrix_del(multiplier);
-}
-
 void	centre_origin(t_map *map, t_matrix **coords)
 {
 	size_t	index;
@@ -62,7 +50,7 @@ void	centre_origin(t_map *map, t_matrix **coords)
 	i = 0;
 	while (i < (map->row * map->col))
 	{
-		ft_translate_origin(map->coord[i], (mid_x * -1), (mid_y * -1), 0);
+		ft_matrix_translate(map->coord[i], (mid_x * -1), (mid_y * -1), 0);
 		i++;
 	}
 }
