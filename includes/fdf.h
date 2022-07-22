@@ -101,7 +101,7 @@ typedef struct s_map
 	t_matrix	**coord;
 	t_matrix	*trans_rot;
 	t_matrix	*trans_late;
-	t_matrix	*trans_scale;
+	//t_matrix	*trans_scale;
 	t_mod		*mod;
 }	t_map;
 
@@ -110,18 +110,18 @@ typedef struct s_map
 // Main File
 int			close_prog(void);
 int			ft_handle_key(int keycode, t_map *map_data);
-void		render_first_img(t_data *data, t_img *img, t_map *map);
+void		render_first_img(t_data *data, t_img *img, t_mod *mod, t_map *map);
 
 // Main Helper 2
-t_matrix	*ft_get_trans(t_map *map, int row, int col);
-void		plot_map(t_map *map, t_img *img);
+// t_matrix	*ft_get_trans(t_map *map, int row, int col);
+// void		plot_map(t_map *map, t_img *img);
 
 // Main Helper
-// void		transform_coord(t_matrix **coords, t_map *map, size_t n, int flag);
-// t_matrix	*ft_coord_get(t_map *map, t_matrix **dup, int row, int col);
-// void		plot_rows(t_map *map, t_matrix **dup, t_img *img);
-// void		plot_cols(t_map *map, t_matrix **dup, t_img *img);
-// void		plot_map(t_map *map, t_img *img);
+void		transform_coord(t_matrix **coords, t_map *map, size_t n);
+t_matrix	*ft_coord_get(t_map *map, t_matrix **dup, int row, int col);
+void		plot_rows(t_map *map, t_matrix **dup, t_img *img);
+void		plot_cols(t_map *map, t_matrix **dup, t_img *img);
+void		plot_map(t_map *map, t_img *img);
 
 // Main Utils
 t_matrix	**ft_duplicate_coords(t_matrix **coords, size_t row, size_t col);
@@ -147,8 +147,7 @@ t_mod		*iso_init(size_t size);
 // Bonus Helper
 void		ft_img_refresh(t_map *map);
 void		ft_trans_refresh(t_map *map, int flag);
-void		render_bonus_img(t_data *data, t_img *img, t_map *map);
-void		plot_map_bonus(t_map *map, t_img *img);
+void		render_bonus_img(t_data *data, t_img *img, t_mod *mod, t_map *map);
 
 /* -.- Matrix Functions -.- */
 
@@ -192,7 +191,6 @@ size_t		ft_col_get(char *file);
 // Parse Utils
 void		ft_free_array(char **str);
 void		centre_origin(t_map *map, t_matrix **coords);
-void		ft_translate_origin(t_matrix *coord, double x, double y, double z);
 t_matrix	*ft_set_coords(int i, t_map *map, t_mod *mod, char **split);
 
 // Map Init
