@@ -18,14 +18,14 @@ Implementation to translate the map along the screen.
 void	bonus_translate(t_map *map, int key)
 {
 	if (key == UP)
-		map->mod->trans_y -= 10;
+		ft_matrix_translate(map->trans_late, 0, -10, 0);
 	else if (key == DOWN)
-		map->mod->trans_y += 10;
+		ft_matrix_translate(map->trans_late, 0, 10, 0);
 	else if (key == LEFT)
-		map->mod->trans_x -= 10;
+		ft_matrix_translate(map->trans_late, -10, 0, 0);
 	else
-		map->mod->trans_x += 10;
-	render_bonus_img(map->data, map->img, map->mod, map);
+		ft_matrix_translate(map->trans_late, 10, 0, 0);
+	render_bonus_img(map->data, map->img, map);
 }
 
 /*
@@ -35,10 +35,10 @@ Implementation to alter the height of the peaks.
 void	bonus_peak(t_map *map, int key)
 {
 	if (key == PLUS)
-		map->mod->scale_z *= 2;
+		ft_matrix_scale(map->trans_scale, 1, 1, 2);
 	else
-		map->mod->scale_z *= 0.5;
-	render_bonus_img(map->data, map->img, map->mod, map);
+		ft_matrix_scale(map->trans_scale, 1, 1, 0.5);
+	render_bonus_img(map->data, map->img, map);
 }
 
 /*
@@ -48,24 +48,18 @@ Implementation to alter the scale of the x-y plane.
 void	bonus_scale(t_map *map, int key)
 {
 	if (key == K_B)
-	{
-		map->mod->scale_x *= 2;
-		map->mod->scale_y *= 2;
-	}
+		ft_matrix_scale(map->trans_scale, 2, 2, 1);
 	else if (key == K_N)
-		map->mod->scale_x *= 2;
+		ft_matrix_scale(map->trans_scale, 2, 1, 1);
 	else if (key == K_M)
-		map->mod->scale_y *= 2;
+		ft_matrix_scale(map->trans_scale, 1, 2, 1);
 	else if (key == K_X)
-		map->mod->scale_x *= 0.5;
+		ft_matrix_scale(map->trans_scale, 0.5, 1, 1);
 	else if (key == K_C)
-		map->mod->scale_y *= 0.5;
+		ft_matrix_scale(map->trans_scale, 1, 0.5, 1);
 	else
-	{
-		map->mod->scale_x *= 0.5;
-		map->mod->scale_y *= 0.5;
-	}
-	render_bonus_img(map->data, map->img, map->mod, map);
+		ft_matrix_scale(map->trans_scale, 0.5, 0.5, 1);
+	render_bonus_img(map->data, map->img, map);
 }
 
 /*
@@ -75,18 +69,18 @@ Implementation to rotate the map
 void	bonus_rotate(t_map *map, int key)
 {
 	if (key == K_I)
-		map->mod->rot_x += 10;
+		ft_matrix_rotate_x(map->trans_rot, 10);
 	else if (key == K_O)
-		map->mod->rot_y += 10;
+		ft_matrix_rotate_y(map->trans_rot, 10);
 	else if (key == K_P)
-		map->mod->rot_z += 10;
+		ft_matrix_rotate_z(map->trans_rot, 10);
 	else if (key == K_J)
-		map->mod->rot_x -= 10;
+		ft_matrix_rotate_x(map->trans_rot, -10);
 	else if (key == K_K)
-		map->mod->rot_y -= 10;
+		ft_matrix_rotate_y(map->trans_rot, -10);
 	else if (key == K_L)
-		map->mod->rot_z -= 10;
-	render_bonus_img(map->data, map->img, map->mod, map);
+		ft_matrix_rotate_z(map->trans_rot, -10);
+	render_bonus_img(map->data, map->img, map);
 }
 
 /*
@@ -95,7 +89,8 @@ Implementation to reset to isometric projection
 
 void	bonus_reset(t_map *map)
 {
-	free(map->mod);
-	map->mod = iso_init(map->row * map->col);
-	render_first_img(map->data, map->img, map->mod, map);
+	ft_matrix_del(map->trans_scale);
+	ft_matrix_del(map->trans_rot);
+	ft_matrix_del(map->trans_late);
+	render_first_img(map->data, map->img, map);
 }

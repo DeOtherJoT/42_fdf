@@ -149,7 +149,7 @@ void		bonus_reset(t_map *map);
 // Bonus Helper
 void		ft_img_refresh(t_map *map);
 void		ft_trans_init(t_map *map);
-void		render_bonus_img(t_data *data, t_img *img, t_mod *mod, t_map *map);
+void		render_bonus_img(t_data *data, t_img *img, t_map *map);
 
 /* -.- Matrix Functions -.- */
 
