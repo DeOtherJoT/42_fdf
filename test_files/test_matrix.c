@@ -253,15 +253,24 @@ void	test_matrix_cp(void)
 	ft_matrix_del(matB);
 }
 
+void	test_transform_theory(void)
+{
+	t_matrix	*matA = ft_matrix_ident(4);
+
+	ft_matrix_rotate_z(matA, 45);
+	print_matrix(matA);
+}
+
 int main(void)
 {
-	test_matrix_new();
-	test_matrix_get();
-	test_matrix_set();
-	test_matrix_create();
-	test_matrix_ident();
-	test_matrix_mult();
-	test_matrix_swap();
-	test_matrix_mult_swp();
-	test_matrix_cp();
+	// test_matrix_new();
+	// test_matrix_get();
+	// test_matrix_set();
+	// test_matrix_create();
+	// test_matrix_ident();
+	// test_matrix_mult();
+	// test_matrix_swap();
+	// test_matrix_mult_swp();
+	// test_matrix_cp();
+	test_transform_theory();
 }

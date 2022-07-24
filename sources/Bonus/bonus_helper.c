@@ -28,20 +28,11 @@ If flag is 0  -> just initialise identity matrices.
 If flag is !0 -> free matrices and reset them.
 */
 
-void	ft_trans_refresh(t_map *map, int flag)
+void	ft_trans_init(t_map *map)
 {
-	if (flag == 0)
-	{
-		map->trans_rot = ft_matrix_ident(4);
-		map->trans_late = ft_matrix_ident(4);
-	}
-	else
-	{
-		ft_matrix_del(map->trans_rot);
-		ft_matrix_del(map->trans_late);
-		map->trans_rot = ft_matrix_ident(4);
-		map->trans_late = ft_matrix_ident(4);
-	}
+	map->trans_scale = ft_matrix_ident(4);
+	map->trans_rot = ft_matrix_ident(4);
+	map->trans_late = ft_matrix_ident(4);
 }
 
 /*
@@ -52,7 +43,7 @@ file in the Driver folder.
 
 void	render_bonus_img(t_data *data, t_img *img, t_mod *mod, t_map *map)
 {
-	ft_trans_refresh(map, 1);
+	//ft_trans_init(map, 1);
 	ft_matrix_scale(map->trans_rot, mod->scale_x, mod->scale_y,
 		mod->scale_z);
 	ft_matrix_rotate_z(map->trans_rot, mod->rot_z);

@@ -55,3 +55,18 @@ void	ft_matrix_shear(t_matrix *trans, double x, double y, double z)
 	ft_matrix_mult_swp2(trans, multiplier);
 	ft_matrix_del(multiplier);
 }
+
+t_matrix	*get_total_trans(t_matrix *scale, t_matrix *rot, t_matrix *late)
+{
+	t_matrix	*ret;
+
+	ret = ft_matrix_ident(4);
+	ft_matrix_mult_swp2(ret, scale);
+	ft_matrix_mult_swp2(ret, rot);
+	ft_matrix_mult_swp2(ret, late);
+
+	// ret = ft_matrix_mult(rot, scale);
+	// ret = ft_matrix_mult(late, ret);
+
+	return (ret);
+}

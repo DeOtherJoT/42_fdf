@@ -56,12 +56,17 @@ instance and connecting them pixel by pixel to form the isometric projection.
 The image is then pushed to the window to be viewed.
 */
 
-void	render_first_img(t_data *data, t_img *img, t_mod *mod, t_map *map)
+void	render_first_img(t_data *data, t_img *img, t_map *map)
 {
-	ft_trans_refresh(map, 0);
-	ft_matrix_scale(map->trans_rot, mod->scale_x, mod->scale_y, mod->scale_z);
-	ft_matrix_rotate_z(map->trans_rot, mod->rot_z);
-	ft_matrix_rotate_x(map->trans_rot, mod->rot_x);
+	size_t	scale_xy;
+	size_t	scale_z;
+
+	ft_trans_init(map);
+	scale_xy = ft_decide_scale(map->row * map->col);
+	scale_z = ft_decide_peak(map->row * map->col);
+	ft_matrix_scale(map->trans_scale, scale_xy, scale_xy, scale_z);
+	ft_matrix_rotate_z(map->trans_rot, 45);
+	ft_matrix_rotate_x(map->trans_rot, 54.736);
 	ft_matrix_translate(map->trans_late, 960, 540, 0);
 	plot_map(map, img);
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
@@ -91,7 +96,7 @@ int	main(int argc, char **argv)
 	map = parse_map(argv[1]);
 	map->data = ft_data_new();
 	map->img = ft_img_new(map->data);
-	render_first_img(map->data, map->img, map->mod, map);
+	render_first_img(map->data, map->img, map);
 	mlx_key_hook(map->data->win_ptr, ft_handle_key, map);
 	mlx_hook(map->data->win_ptr, 17, 0, close_prog, 0);
 	mlx_loop(map->data->mlx_ptr);

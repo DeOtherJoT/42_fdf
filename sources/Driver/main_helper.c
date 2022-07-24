@@ -19,15 +19,14 @@ according to the set transformation matrix.
 
 void	transform_coord(t_matrix **coords, t_map *map, size_t n)
 {
-	size_t	i;
+	t_matrix	*total_trans;
+	size_t		i;
 
-	i = 0;
-	while (i < n)
-	{
-		ft_matrix_mult_swp2(coords[i], map->trans_rot);
-		ft_matrix_mult_swp2(coords[i], map->trans_late);
-		i++;
-	}
+	total_trans = get_total_trans(map->trans_scale, map->trans_rot,
+		map->trans_late);
+	i = -1;
+	while (++i < n)
+		ft_matrix_mult_swp2(coords[i], total_trans);
 }
 
 /*
@@ -53,11 +52,11 @@ void	plot_map(t_map *map, t_img *img)
 
 	temp = ft_duplicate_coords(map->coord, map->row, map->col);
 	transform_coord(temp, map, (map->row * map->col));
-	i = 0;
-	while (i < map->row)
+	i = -1;
+	while (++i < map->row)
 	{
-		j = 0;
-		while (j < map->col)
+		j = -1;
+		while (++j < map->col)
 		{
 			if (j != (map->col - 1))
 				plot_line(ft_coord_get(map, temp, i, j),
@@ -65,9 +64,7 @@ void	plot_map(t_map *map, t_img *img)
 			if (i != (map->row - 1))
 				plot_line(ft_coord_get(map, temp, i, j),
 					ft_coord_get(map, temp, i + 1, j), img);
-			j++;
 		}
-		i++;
 	}
 	ft_del_dup(temp, (map->row * map->col));
 }

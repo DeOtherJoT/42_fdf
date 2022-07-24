@@ -132,7 +132,7 @@ t_map	*parse_map(char *file)
 	row = ft_row_get(file);
 	col = ft_col_get(file);
 	ret = ft_map_new(row, col);
-	ret->mod = iso_init(col * row);
+	//ret->mod = iso_init(col * row);
 	fd = open(file, O_RDONLY);
 	fill_coords(ret, fd);
 	close(fd);

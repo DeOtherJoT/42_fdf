@@ -49,3 +49,41 @@ t_matrix	**ft_duplicate_coords(t_matrix **coords, size_t row, size_t col)
 	}
 	return (ret);
 }
+
+/*
+Function that decides how far apart two points should be based on the total
+size of the map.
+*/
+
+size_t	ft_decide_scale(size_t size)
+{
+	if (size <= 1000)
+		return (50);
+	else if (size <= 5000)
+		return (25);
+	else if (size <= 10000)
+		return (10);
+	else if (size <= 50000)
+		return (5);
+	else
+		return (3);
+}
+
+/*
+Function that decides if the altitudes need to be upscaled by a set amount
+based on the total size of the map.
+*/
+
+size_t	ft_decide_peak(size_t size)
+{
+	if (size <= 1000)
+		return (5);
+	else if (size <= 5000)
+		return (4);
+	else if (size <= 7500)
+		return (3);
+	else if (size <= 10000)
+		return (2);
+	else
+		return (1);
+}

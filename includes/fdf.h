@@ -38,7 +38,7 @@
 
 # include <math.h>
 # include <fcntl.h>
-# include <mlx.h>
+// # include <mlx.h>
 
 # include "../libft/libft.h"
 
@@ -101,8 +101,8 @@ typedef struct s_map
 	t_matrix	**coord;
 	t_matrix	*trans_rot;
 	t_matrix	*trans_late;
-	//t_matrix	*trans_scale;
-	t_mod		*mod;
+	t_matrix	*trans_scale;
+	//t_mod		*mod;
 }	t_map;
 
 /* -.- Driver Function -.- */
@@ -110,7 +110,7 @@ typedef struct s_map
 // Main File
 int			close_prog(void);
 int			ft_handle_key(int keycode, t_map *map_data);
-void		render_first_img(t_data *data, t_img *img, t_mod *mod, t_map *map);
+void		render_first_img(t_data *data, t_img *img, t_map *map);
 
 // Main Helper 2
 // t_matrix	*ft_get_trans(t_map *map, int row, int col);
@@ -126,6 +126,8 @@ void		plot_map(t_map *map, t_img *img);
 // Main Utils
 t_matrix	**ft_duplicate_coords(t_matrix **coords, size_t row, size_t col);
 void		ft_del_dup(t_matrix **dup, size_t n);
+size_t		ft_decide_scale(size_t size);
+size_t		ft_decide_peak(size_t size);
 
 // Init Data
 t_data		*ft_data_new(void);
@@ -142,11 +144,11 @@ void		bonus_rotate(t_map *map, int key);
 void		bonus_reset(t_map *map);
 
 // Bonus Init
-t_mod		*iso_init(size_t size);
+// t_mod		*iso_init(size_t size);
 
 // Bonus Helper
 void		ft_img_refresh(t_map *map);
-void		ft_trans_refresh(t_map *map, int flag);
+void		ft_trans_init(t_map *map);
 void		render_bonus_img(t_data *data, t_img *img, t_mod *mod, t_map *map);
 
 /* -.- Matrix Functions -.- */
@@ -172,6 +174,7 @@ t_matrix	*ft_matrix_cp(t_matrix *mat);
 void		ft_matrix_translate(t_matrix *trans, double x, double y, double z);
 void		ft_matrix_scale(t_matrix *trans, double x, double y, double z);
 void		ft_matrix_shear(t_matrix *trans, double x, double y, double z);
+t_matrix	*get_total_trans(t_matrix *scale, t_matrix *rot, t_matrix *late);
 
 // Affine Rotation
 double		ft_deg_to_rad(double deg);
