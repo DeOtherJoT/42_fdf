@@ -38,7 +38,7 @@
 
 # include <math.h>
 # include <fcntl.h>
-// # include <mlx.h>
+# include <mlx.h>
 
 # include "../libft/libft.h"
 
@@ -78,20 +78,6 @@ typedef struct s_matrix
 	double	*matrix;
 }	t_matrix;
 
-typedef struct s_mod
-{
-	//ssize_t	scale_i;
-	double	scale_x;
-	double	scale_y;
-	double	scale_z;
-	//ssize_t	peak;
-	ssize_t	trans_x;
-	ssize_t	trans_y;
-	double	rot_x;
-	double	rot_y;
-	double	rot_z;
-}	t_mod;
-
 typedef struct s_map
 {
 	size_t		row;
@@ -102,7 +88,6 @@ typedef struct s_map
 	t_matrix	*trans_rot;
 	t_matrix	*trans_late;
 	t_matrix	*trans_scale;
-	//t_mod		*mod;
 }	t_map;
 
 /* -.- Driver Function -.- */
@@ -142,9 +127,6 @@ void		bonus_peak(t_map *map, int key);
 void		bonus_scale(t_map *map, int key);
 void		bonus_rotate(t_map *map, int key);
 void		bonus_reset(t_map *map);
-
-// Bonus Init
-// t_mod		*iso_init(size_t size);
 
 // Bonus Helper
 void		ft_img_refresh(t_map *map);

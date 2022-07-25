@@ -86,7 +86,8 @@ t_matrix	*ft_matrix_mult(t_matrix *matA, t_matrix *matB)
 }
 
 /*
-Combining both ft_matrix_mult and ft_matrix_swap to get a right-multiply function.
+Combining both ft_matrix_mult and ft_matrix_swap to get a
+right-multiply function.
 */
 
 void	ft_matrix_mult_swp(t_matrix *result, t_matrix *multiplier)
@@ -99,7 +100,8 @@ void	ft_matrix_mult_swp(t_matrix *result, t_matrix *multiplier)
 }
 
 /*
-Combining both ft_matrix_mult and ft_matrix_swap to get a left-multiply function.
+Combining both ft_matrix_mult and ft_matrix_swap to get a
+left-multiply function.
 */
 
 void	ft_matrix_mult_swp2(t_matrix *result, t_matrix *multiplier)

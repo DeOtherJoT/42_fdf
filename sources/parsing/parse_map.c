@@ -89,7 +89,8 @@ void	ft_check_col(char **str, size_t col)
 }
 
 /*
-
+Gets each row from the .fdf file, seperates the columns and assigns
+each coordinate
 */
 
 void	fill_coords(t_map *map, int fd)
@@ -132,7 +133,6 @@ t_map	*parse_map(char *file)
 	row = ft_row_get(file);
 	col = ft_col_get(file);
 	ret = ft_map_new(row, col);
-	//ret->mod = iso_init(col * row);
 	fd = open(file, O_RDONLY);
 	fill_coords(ret, fd);
 	close(fd);

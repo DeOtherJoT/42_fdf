@@ -43,14 +43,6 @@ file in the Driver folder.
 
 void	render_bonus_img(t_data *data, t_img *img, t_map *map)
 {
-	//ft_trans_init(map, 1);
-	// ft_matrix_scale(map->trans_rot, mod->scale_x, mod->scale_y,
-	// 	mod->scale_z);
-	// ft_matrix_rotate_z(map->trans_rot, mod->rot_z);
-	// ft_matrix_rotate_x(map->trans_rot, mod->rot_x);
-	// ft_matrix_rotate_y(map->trans_rot, mod->rot_y);
-	// ft_matrix_translate(map->trans_late, mod->trans_x,
-	// 	mod->trans_y, 0);
 	plot_map(map, img);
 	mlx_clear_window(data->mlx_ptr, data->win_ptr);
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,

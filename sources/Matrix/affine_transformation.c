@@ -60,13 +60,7 @@ t_matrix	*get_total_trans(t_matrix *scale, t_matrix *rot, t_matrix *late)
 {
 	t_matrix	*ret;
 
-	ret = ft_matrix_ident(4);
-	ft_matrix_mult_swp2(ret, scale);
-	ft_matrix_mult_swp2(ret, rot);
+	ret = ft_matrix_mult(rot, scale);
 	ft_matrix_mult_swp2(ret, late);
-
-	// ret = ft_matrix_mult(rot, scale);
-	// ret = ft_matrix_mult(late, ret);
-
 	return (ret);
 }

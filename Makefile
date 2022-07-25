@@ -24,7 +24,7 @@ MAIN	= sources/Driver/main.c
 
 #SOURCE FILE#
 
-S_SRCS	= $(addprefix $(BNS_DIR), bonus_helper.c bonus_init.c bonus.c) \
+S_SRCS	= $(addprefix $(BNS_DIR), bonus_helper.c bonus.c) \
 		  $(addprefix $(BLA_DIR), algo.c bresenham_utils.c init_coord.c) \
 		  $(addprefix $(DRV_DIR), init_data.c main_helper.c main_utils.c) \
 		  $(addprefix $(MAT_DIR), affine_rotation.c affine_transformation.c init_matrix.c matrix_utils.c mult_matrix.c) \
@@ -50,6 +50,10 @@ clean :
 fclean : clean
 	$(RM) $(NAME)
 	$(MAKE) fclean -C $(LIBFT)
+
+norm :
+	norminette $(SRC_DIR)
+	norminette includes/fdf.h
 
 re : fclean all
 

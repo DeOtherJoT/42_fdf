@@ -23,7 +23,7 @@ void	transform_coord(t_matrix **coords, t_map *map, size_t n)
 	size_t		i;
 
 	total_trans = get_total_trans(map->trans_scale, map->trans_rot,
-		map->trans_late);
+			map->trans_late);
 	i = -1;
 	while (++i < n)
 		ft_matrix_mult_swp2(coords[i], total_trans);
