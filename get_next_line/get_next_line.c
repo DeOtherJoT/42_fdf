@@ -6,7 +6,7 @@
 /*   By: jthor <jthor@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 16:57:13 by jthor             #+#    #+#             */
-/*   Updated: 2022/01/14 18:15:51 by jthor            ###   ########.fr       */
+/*   Updated: 2022/07/15 13:37:50 by jthor            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ char	*get_next_line(int fd)
 
 	if (fd < 0)
 		return (NULL);
-	buff = (char *)malloc((2) * sizeof(char));
+	buff = (char *)malloc((21) * sizeof(char));
 	if (!buff)
 		return (NULL);
 	if (!stat_str)
@@ -62,7 +62,7 @@ ssize_t	read_buff(int fd, char **buff, ssize_t *read_ret)
 {
 	ssize_t	ret;
 
-	ret = read(fd, *buff, 1);
+	ret = read(fd, *buff, 20);
 	if (ret > 0)
 		(*buff)[ret] = '\0';
 	*read_ret = ret;

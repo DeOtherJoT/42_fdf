@@ -13,60 +13,48 @@
 #include "../../includes/fdf.h"
 
 /*
-Opens the file and counts the number of rows in the file.
-Row is counted with every invocation of get_next_line.
+Opens the file and gets the number of columns from the first row.
+After that, use get_next_line repetitively to get the number of rows.
+Row and col are passed by reference so they can be modified.
 */
-
-size_t	ft_row_get(char *file)
-{
-	int		fd;
-	char	*temp;
-	size_t	ret;
-
-	fd = open(file, O_RDONLY);
-	if (fd == -1)
-		err_msg("File cannot be opened");
-	ret = 0;
-	while (1 == 1)
-	{
-		temp = get_next_line(fd);
-		if (temp == NULL || temp[0] == '\n')
-			break ;
-		ret++;
-		free(temp);
-	}
-	if (ret == 0)
-		err_msg("File invalid");
-	close(fd);
-	return (ret);
-}
-
-/*
-Opens the file and counts the number of columns from the first row.
-The first row is extracted and seperate the numbers. Each number is then
-treated as one column.
-*/
-
-size_t	ft_col_get(char *file)
+void	ft_row_col_get(size_t *row, size_t *col, char *file)
 {
 	int		fd;
 	char	*temp_gnl;
-	char	**temp_split;
-	size_t	ret;
 
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
 		err_msg("File cannot be opened");
-	ret = 0;
 	temp_gnl = get_next_line(fd);
-	temp_split = ft_split_alt(temp_gnl, " \n");
+	*col = ft_col_get(temp_gnl);
+	*row = 1;
+	while (1 == 1)
+	{
+		free(temp_gnl);
+		temp_gnl = get_next_line(fd);
+		if (temp_gnl == NULL || temp_gnl[0] == '\n')
+			break ;
+		*row += 1;
+	}
+	free(temp_gnl);
+	close(fd);
+}
+
+/*
+Splits the line and counts and returns the number of columns of the first row.
+This is then used as the baseline for the other rows.
+*/
+
+size_t	ft_col_get(char *line)
+{
+	size_t	ret;
+	char	**temp_split;
+
+	ret = 0;
+	temp_split = ft_split_alt(line, " \n");
 	while (temp_split[ret] != NULL)
 		ret++;
-	if (ret == 0)
-		err_msg("File invalid");
-	free(temp_gnl);
 	ft_free_array(temp_split);
-	close(fd);
 	return (ret);
 }
 
@@ -130,8 +118,9 @@ t_map	*parse_map(char *file)
 	t_map	*ret;
 	int		fd;
 
-	row = ft_row_get(file);
-	col = ft_col_get(file);
+	ft_row_col_get(&row, &col, file);
+	if (row <= 1 || col <= 1)
+		err_msg("Format error : Row or col cannot be 1 or lesser");
 	ret = ft_map_new(row, col);
 	fd = open(file, O_RDONLY);
 	fill_coords(ret, fd);

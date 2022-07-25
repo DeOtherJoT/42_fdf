@@ -10,15 +10,17 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
+
 char	*ft_strchr(const char *s, int c)
 {
 	if (c >= 256)
 		c -= 256;
-	while (*s && *s != c)
+	while (*s)
 	{
+		if (*s == c)
+			return ((char *)s);
 		s++;
 	}
-	if (*s == c)
-		return ((char *)s);
-	return (0);
+	return (NULL);
 }

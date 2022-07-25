@@ -170,8 +170,8 @@ void		ft_matrix_rotate_z(t_matrix *trans, double z);
 t_map		*parse_map(char *file);
 void		ft_check_col(char **str, size_t col);
 void		fill_coords(t_map *map, int fd);
-size_t		ft_row_get(char *file);
-size_t		ft_col_get(char *file);
+size_t		ft_col_get(char *line);
+void		ft_row_col_get(size_t *row, size_t *col, char *file);
 
 // Parse Utils
 void		ft_free_array(char **str);
