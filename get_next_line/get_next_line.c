@@ -33,7 +33,7 @@ char	*get_next_line(int fd)
 
 	if (fd < 0)
 		return (NULL);
-	buff = (char *)malloc((21) * sizeof(char));
+	buff = (char *)malloc((101) * sizeof(char));
 	if (!buff)
 		return (NULL);
 	if (!stat_str)
@@ -62,7 +62,7 @@ ssize_t	read_buff(int fd, char **buff, ssize_t *read_ret)
 {
 	ssize_t	ret;
 
-	ret = read(fd, *buff, 20);
+	ret = read(fd, *buff, 100);
 	if (ret > 0)
 		(*buff)[ret] = '\0';
 	*read_ret = ret;
