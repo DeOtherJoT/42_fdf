@@ -4,7 +4,8 @@ NAME	= fdf
 
 #FLAGS#
 
-GCC		= gcc -Wall -Werror -Wextra -fsanitize=address -g
+GCC		= gcc -Wall -Werror -Wextra
+FSAN	= -fsanitize=address -g
 MLX		= -lmlx -framework OpenGL -framework AppKit
 RM		= rm -rf
 
