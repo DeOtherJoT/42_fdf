@@ -32,7 +32,7 @@ S_SRCS	= $(addprefix $(BNS_DIR), bonus_helper.c bonus.c) \
 		  $(addprefix $(GNL_DIR), get_next_line.c get_next_line_utils.c)
 OBJS	= $(S_SRCS:.c=.o)
 
-#COMMANDS#
+#RECIPES#
 
 all : $(NAME)
 
@@ -49,6 +49,7 @@ clean :
 
 fclean : clean
 	$(RM) $(NAME)
+	$(RM) fdf.dSYM
 	$(MAKE) fclean -C $(LIBFT)
 
 norm :

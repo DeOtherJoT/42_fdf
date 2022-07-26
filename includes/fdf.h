@@ -97,10 +97,6 @@ int			close_prog(void);
 int			ft_handle_key(int keycode, t_map *map_data);
 void		render_first_img(t_data *data, t_img *img, t_map *map);
 
-// Main Helper 2
-// t_matrix	*ft_get_trans(t_map *map, int row, int col);
-// void		plot_map(t_map *map, t_img *img);
-
 // Main Helper
 void		transform_coord(t_matrix **coords, t_map *map, size_t n);
 t_matrix	*ft_coord_get(t_map *map, t_matrix **dup, int row, int col);
