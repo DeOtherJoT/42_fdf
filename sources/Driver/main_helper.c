@@ -27,6 +27,7 @@ void	transform_coord(t_matrix **coords, t_map *map, size_t n)
 	i = -1;
 	while (++i < n)
 		ft_matrix_mult_swp2(coords[i], total_trans);
+	ft_matrix_del(total_trans);
 }
 
 /*

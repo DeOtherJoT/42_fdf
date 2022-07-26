@@ -19,6 +19,7 @@ Frees the current img_ptr and img->addr and create another image.
 void	ft_img_refresh(t_map *map)
 {
 	mlx_destroy_image(map->data->mlx_ptr, map->data->img_ptr);
+	free(map->img);
 	map->img = ft_img_new(map->data);
 }
 
